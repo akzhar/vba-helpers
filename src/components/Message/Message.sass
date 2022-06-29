@@ -1,0 +1,16 @@
+.message
+  position: fixed
+  top: 36px
+  left: 50%
+  transform: translate(-50%, 0)
+  padding: 20px
+  border-radius: 4px
+  background-color: $color-msg-info-back
+  color: $color-msg-info-text
+  z-index: 2
+  +shadow()
+  +animation-slide-in-top()
+
+  &--warning
+    background-color: $color-msg-warn-back
+    color: $color-msg-warn-text

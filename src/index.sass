@@ -1,0 +1,19 @@
+@import ./consts/const.sass
+@import ./mixin.sass
+
+@font-face
+  font-family: 'RobertoSans-Regular'
+  font-display: swap
+  src: url('./assets/fonts/RobertoSans-Regular.woff2') format('woff2')
+  src: url('./assets/fonts/RobertoSans-Regular.woff') format('woff')
+
+html, body
+  margin: 0
+  font-family: 'RobertoSans-Regular', Tahoma, sans-serif
+  font-weight: 400
+  font-size: 22px
+  line-height: normal
+  color: $color-grey-dark
+
+.visually-hidden
+  +hide()

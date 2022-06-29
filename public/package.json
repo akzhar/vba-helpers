@@ -1,0 +1,22 @@
+{
+  "name": "vba-helpers",
+  "version": "1.0.0",
+  "private": true,
+  "author": "akzhar.taov@yandex.ru",
+  "description": "vba-helpers catalog",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "git add . && git commit -m \"heroku deploy\" && git push heroku master",
+    "logs": "heroku logs --tail",
+    "app-on": "heroku ps:scale web=1",
+    "app-off": "heroku ps:scale web=0"
+  },
+  "engines": {
+    "node": "12.18.3",
+    "npm": "6.14.16"
+  },
+  "dependencies": {
+    "express": "4.17.1"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,28 @@
+=bounds()
+  background: rgba(random(255), random(255), random(255), 0.3)
+  outline: 1px solid rgb(random(255), random(255), random(255))
+
+=hide()
+  position: absolute
+  width: 1px
+  height: 1px
+  margin: -1px
+  border: 0
+  padding: 0
+  clip: rect(0 0 0 0)
+  overflow: hidden
+
+=shadow()
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24)
+
+=animation-slide-in-top()
+  @keyframes slide-in-top
+    0%
+      transform: translate(-50%, -100px)
+      opacity: 0
+    100%
+      transform: translate(-50%, 0)
+      opacity: 1
+
+  animation-name: slide-in-top
+  animation-duration: 0.3s
