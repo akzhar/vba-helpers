@@ -9,7 +9,7 @@ type TLogoProps = {
 
 const Logo: React.FC<TLogoProps> = ({ enableLink = false }) => (
   <Link
-    to={AppRoutes.ALL}
+    to={AppRoutes.CATEGORIES}
     className={`logo ${enableLink ? 'logo--link' : ''}`}
     tabIndex={enableLink ? 0 : -1}
   >

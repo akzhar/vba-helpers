@@ -5,7 +5,9 @@ import { applyMiddleware, Store, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+
 import reducer, { TState, initialState } from '@store/reducer';
+
 import App from './App';
 
 import './index.sass';

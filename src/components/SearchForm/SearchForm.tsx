@@ -24,6 +24,6 @@ const SearchForm: React.FC = () => {
       <button type="submit" className="visually-hidden" tabIndex={-1}>Search</button>
     </form>
   );
-};
+}
 
 export default SearchForm;

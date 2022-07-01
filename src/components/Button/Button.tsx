@@ -30,6 +30,6 @@ const Button: React.FC<TButtonProps> = ({title, clickHandler, url}) => {
       }
     </>
   );
-};
+}
 
 export default Button;

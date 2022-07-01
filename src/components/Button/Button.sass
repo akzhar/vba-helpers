@@ -1,20 +1,35 @@
 .button
-  padding: 8px
-  border: 2px solid transparent
-  border-radius: 4px
   background-color: transparent
   font-family: 'RobertoSans-Regular', Tahoma, sans-serif
   font-size: 16px
   color: $color-grey
+
+a.button
   text-decoration: none
+  padding: 8px 4px
+  border-bottom: 2px solid transparent
+
+  &:hover
+    border-bottom: 2px solid $color-grey
+
+  &:active
+    border-bottom: 2px solid $color-green-dark
+
+  &--active
+    border-bottom: 2px solid $color-green-dark
+    pointer-events: none
+    cursor: default
+
+button.button
+  padding: 8px
+  border: 2px solid transparent
+  border-radius: 4px
 
   &:hover
     border: 2px solid $color-grey
 
   &:active
-    border: 2px solid $color-pink-dark
+    border: 2px solid $color-green-dark
 
   &--active
-    border: 2px solid $color-pink-dark
-    pointer-events: none
-    cursor: default
+    border: 2px solid $color-green-dark
