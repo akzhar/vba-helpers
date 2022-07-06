@@ -1,6 +1,8 @@
 export type TCategory = {
   id: string,
-  category: string
+  category: string,
+  helpersCount: number,
+  keywords: string[]
 }
 
 class Api {

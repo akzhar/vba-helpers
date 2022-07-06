@@ -23,7 +23,7 @@
   },
   "include": [
     "src",
-    "./custom.d.ts",
+    "*.d.ts",
     "./jest-setup.ts"
   ],
   "exclude": ["node_modules"],
