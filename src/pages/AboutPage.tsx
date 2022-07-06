@@ -5,7 +5,7 @@ import Navigation from '@components/Navigation';
 
 const AboutPage: React.FC = () => (
   <>
-    <h1 className="visually-hidden">Home page</h1>
+    <h1 className="visually-hidden">About</h1>
     <Logo />
     <Navigation />
   </>

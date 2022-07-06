@@ -1,13 +1,21 @@
 .search-form
   position: relative
   border-bottom: 1px solid $color-grey-light
+  +shadow()
+
+  &__type
+    position: absolute
+    top: 50%
+    left: 12px
+    transform: translateY(-50%)
+    border: none
 
   & input
     display: block
     box-sizing: border-box
     width: 100%
     height: 100%
-    padding: 20px 52px
+    padding: 20px 20px 20px 60px
     border: none
     font-family: 'RobertoSans-Regular', Tahoma, sans-serif
     font-size: 22px
@@ -16,20 +24,3 @@
     &::placeholder
       font-style: italic
       color: $color-grey-light
-
-  &::before,
-  &::after
-    content: ""
-    position: absolute
-    width: 7px
-    height: 3px
-    background-color: $color-grey-light
-    top: 50%
-
-  &::before
-    left: 20px
-    transform: translateY(-50%) rotate(45deg)
-
-  &::after
-    left: 24px
-    transform: translateY(-50%) rotate(-45deg)

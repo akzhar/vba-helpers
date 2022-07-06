@@ -19,7 +19,7 @@ const NotFoundPage: React.FC = () => {
 
   return (
     <>
-      <h1 className="visually-hidden">404 page</h1>
+      <h1 className="visually-hidden">Not found</h1>
       <Logo enableLink />
       <p style={{ textAlign: 'center'}}>{'It seems there isn\'t such page...'}</p>
     </>
