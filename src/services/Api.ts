@@ -22,9 +22,9 @@ class Api {
     return this._instance;
   }
 
-  getByCategoryLink(category: string) {
-    return `${this.baseUrl}/helpers/search-by-category/${category}`;
-  }
+  // getByCategoryLink(category: string) {
+  //   return `${this.baseUrl}/helpers/search-by-category/${category}`;
+  // }
 
   async getCategories(): Promise<TCategory[]> {
       const res = await fetch(`${this.baseUrl}/categories`);
