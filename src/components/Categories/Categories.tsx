@@ -4,6 +4,7 @@ import Api, { TCategory } from '@services/Api';
 import Loader from '@components/Loader';
 import Header from '@components/Header';
 import Button from '@components/Button';
+import { AppRoutes } from '@consts/const';
 
 const Categories: React.FC = () => {
 
@@ -27,10 +28,10 @@ const Categories: React.FC = () => {
         { categories.length
           ?
           categories.map((item: TCategory) => {
-            const url = api.getByCategoryLink(item.category);
+            const searchUrl = `${AppRoutes.SEARCH}?type=c&query=${item.category}`
             return (
               <li key={item.id}>
-                <Button url={url}>{item.category}</Button>
+                <Button url={searchUrl}>{item.category}</Button>
                 <span className="helpers-counter">{`( ${item.helpersCount} )`}</span>
               </li>
             );

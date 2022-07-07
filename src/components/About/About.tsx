@@ -8,15 +8,22 @@ const VBA_WIKI_URL = 'https://ru.wikipedia.org/wiki/Visual_Basic_for_Application
 const About: React.FC = () => (
   <section className="about">
     <div className="about__column">
-      <p>Небольшая коллекция хелперов для <a href={VBA_WIKI_URL} target="blank">VBA</a></p>
+      <p>Это небольшая коллекция <a href={VBA_WIKI_URL} target="blank">VBA</a> хелперов</p>
       <dl>
         <dt>Хелпер *</dt>
         <dd>вспомогательная процедура / функция</dd>
       </dl>
+      <p>Хелперы хранятся в виде <b>.bas</b> файлов и разделены на категории</p>
+      <p>Категории хелперов представлены на отдельной <Button url={AppRoutes.CATEGORIES}>странице</Button></p>
     </div>
     <div className="about__column">
-      <p><Button url={AppRoutes.SEARCH}>Искать</Button>можно по ключевым словам или категории</p>
-      <p>Все категории представлены на отдельной<Button url={AppRoutes.CATEGORIES}>странице</Button></p>
+      <p>Поиск возможен:</p>
+      <ul>
+        <li><Button url={`${AppRoutes.SEARCH}?type=t`}>по заголовку хелпера</Button></li>
+        <li><Button url={`${AppRoutes.SEARCH}?type=c`}>по категории хелпера</Button></li>
+        <li><Button url={`${AppRoutes.SEARCH}?type=k`}>по ключевому слову (фразе)</Button></li>
+        <li><Button url={`${AppRoutes.SEARCH}?type=n`}>по имени хелпера</Button></li>
+      </ul>
     </div>
   </section>
 );

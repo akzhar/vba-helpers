@@ -1,11 +1,14 @@
 /* eslint-disable jsx-a11y/no-onchange */
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import debounce from '@utils/debounce';
 
 const SearchTypeToHint: { [key: string]: string } =  {
+  t: 'Search by title',
+  c: 'Search by category',
   k: 'Search by keyword',
-  c: 'Search by category'
+  n: 'Search by name'
 };
 
 import ActionCreator from '@store/actions';
@@ -16,8 +19,8 @@ const SearchForm: React.FC = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const [searchType, setSearchType] = useState<string>(Object.keys(SearchTypeToHint)[0]);
-  const [searchHint, setSearchHint] = useState<string>(Object.values(SearchTypeToHint)[0]);
+  const [searchType, setSearchType] = useState<string>('t');
+  const [searchHint, setSearchHint] = useState<string>(SearchTypeToHint['t']);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const typeRef = useRef<HTMLSelectElement>(null);
@@ -49,12 +52,20 @@ const SearchForm: React.FC = () => {
     const queryValue = queryRef.current?.value;
     if(queryValue) {
       switch(queryValue) {
+        case '!':
+          setSearchType('t'); // seacrh by title
+          setSearchQuery('');
+          break;
         case '@':
-          setSearchType('c');
+          setSearchType('c'); // seacrh by category
           setSearchQuery('');
           break;
         case '#':
-          setSearchType('k');
+          setSearchType('k'); // seacrh by keyword
+          setSearchQuery('');
+          break;
+        case '$':
+          setSearchType('n'); // seacrh by name
           setSearchQuery('');
           break;
         default:
@@ -79,14 +90,17 @@ const SearchForm: React.FC = () => {
     queryRef.current?.focus();
   }, []);
 
-  useEffect(() => {
-    if (!searchQuery) {
-      navigate(`?type=${searchType}`);
-    } else {
-      navigate(`?type=${searchType}&query=${searchQuery}`);
+  const debouncedEffect = useCallback(debounce(() => {
+    const type = typeRef.current?.value;
+    const query = queryRef.current?.value;
+    const newUrl = query ? `?type=${type}&query=${query}`: `?type=${type}`;
+    navigate(newUrl, { replace: true });
+    if (type) {
+      setSearchHint(SearchTypeToHint[type]);
     }
-    setSearchHint(SearchTypeToHint[searchType]);
-  }, [searchType, searchQuery]);
+  }), []);
+
+  useEffect(debouncedEffect, [searchType, searchQuery]);
 
   return (
     <form className="search" onSubmit={formSubmitHandler}>
@@ -111,11 +125,15 @@ const SearchForm: React.FC = () => {
       />
       <div className="search__hint">
         <span>
-        Type <b>@</b> to search by category
+        Type <b>!</b> to search by <b>title</b>
         <br/>
-        Type <b>#</b> to search by keyword
+        Type <b>@</b> to search by <b>category</b>
         <br/>
-        Type and press <b>Enter</b>
+        Type <b>#</b> to search by <b>keyword</b>
+        <br/>
+        Type <b>$</b> to search by <b>name</b>
+        <br/>
+        To search press <b>Enter</b>
         </span>
       </div>
       <button type="submit" className="visually-hidden" tabIndex={-1}>Search</button>

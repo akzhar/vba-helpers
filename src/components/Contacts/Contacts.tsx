@@ -8,7 +8,7 @@ const Contacts: React.FC = () => (
   <section className="contacts">
     <Header id="contacts" text="Контакты" />
     <p>Баги и замечания приветствуются на <a href={`${ContactLinks.GITHUB}/issues`} target="blank" title="Open issues">GitHub Issues</a></p>
-    <p>По остальным вопросам пишите в Telegram</p>
+    <p>По остальным вопросам пишите в Telegram <span role="img" aria-label="hugging face">🤗</span></p>
     <ul>
       <li>
         <a href={ContactLinks.TELEGRAM} target="blank" title="Write to @akzhario">
