@@ -7,8 +7,8 @@ type ILoaderProps = {
 };
 
 const Loader: React.FC<ILoaderProps> = ({ size = 52 }) => (
-  <div className="loader" style={{width: '100%'}}>
-    <img src={loaderPath} alt="Loading..." width={size} height={size} style={{width: '0 auto'}} />
+  <div className="loader">
+    <img src={loaderPath} alt="Loading..." width={size} height={size} />
   </div>
 );
 

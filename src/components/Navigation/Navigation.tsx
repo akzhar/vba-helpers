@@ -9,7 +9,7 @@ const Navigation: React.FC = () => (
     {
       Object.entries(AppRoutes).map((route, index) => {
         const [routeTitle, routeUrl] = route;
-        return <Button key={index} title={capitalize(routeTitle)} url={routeUrl} />
+        return <Button key={index} url={routeUrl}>{capitalize(routeTitle)}</Button>
       })
     }
   </nav>

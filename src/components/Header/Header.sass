@@ -1,0 +1,31 @@
+.header
+  display: flex
+  justify-content: center
+  margin: 20px 0 40px 0
+
+  & h2
+    display: inline
+    position: relative
+    margin: 0
+    font-size: 26px
+    font-weight: 400
+    color: $color-grey
+    text-align: center
+
+    & a
+      display: none
+      position: absolute
+      top: 50%
+      right: -40px
+      transform: translateY(-50%)
+
+      & svg
+        fill: $color-green-dark
+
+  &:hover a
+    display: flex
+    justify-content: center
+    align-items: center
+
+    &:hover
+      opacity: 0.6
