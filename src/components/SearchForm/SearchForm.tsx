@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-onchange */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 const MapTypeToHint: { [key: string]: string } =  {
@@ -15,59 +15,87 @@ const SearchForm: React.FC = () => {
 
   const [searchType, setSearchType] = useState<string>(Object.keys(MapTypeToHint)[0]);
   const [searchHint, setSearchHint] = useState<string>(Object.values(MapTypeToHint)[0]);
-  const [query, setQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const selectRef = useRef<HTMLSelectElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const typeRef = useRef<HTMLSelectElement>(null);
+  const queryRef = useRef<HTMLInputElement>(null);
 
   const formSubmitHandler = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const value = inputRef.current?.value;
-    if(value && value === query) {
-      dispatch(ActionCreator.setInfoMessage({ label: '😊', text: `Поиск по запросу <${query}>...` }));
-      inputRef.current.value = '';
+    const value = queryRef.current?.value;
+    if(value && value === searchQuery) {
+      dispatch(ActionCreator.setInfoMessage({ label: '😊', text: `Поиск по запросу <${searchQuery}>...` }));
+      // TODO: save searchQuery to store
+      // TODO: update location url
+      queryRef.current.value = '';
     }
   };
 
-  const selectChangeHandler = (evt: React.FormEvent<HTMLSelectElement>) => {
+  const typeChangeHandler = (evt: React.FormEvent<HTMLSelectElement>) => {
     evt.preventDefault();
-    const typeValue = selectRef.current?.value;
+    const typeValue = typeRef.current?.value;
     if(typeValue) {
       setSearchType(typeValue);
       setSearchHint(MapTypeToHint[typeValue]);
+      queryRef.current?.focus();
     }
   };
 
-  const inputChangeHandler = (evt: React.FormEvent<HTMLInputElement>) => {
+  const queryChangeHandler = (evt: React.FormEvent<HTMLInputElement>) => {
     evt.preventDefault();
-    const queryValue = inputRef.current?.value;
+    const queryValue = queryRef.current?.value;
 
     if(queryValue) {
       switch(queryValue) {
-        case '#':
+        case '@':
           setSearchType('CATEGORY');
           setSearchHint(MapTypeToHint.CATEGORY);
-          inputRef.current.value = '';
+          queryRef.current.value = '';
           break;
-        case '@':
+        case '#':
           setSearchType('KEYWORD');
           setSearchHint(MapTypeToHint.KEYWORD);
-          inputRef.current.value = '';
+          queryRef.current.value = '';
           break;
         default:
-          setQuery(queryValue);
+          setSearchQuery(queryValue);
           break;
       }
     }
 
   };
 
+  useEffect(() => { queryRef.current?.focus(); }, []);
+
   return (
-    <form className="search-form" onSubmit={formSubmitHandler}>
-      <select className="search-form__type" value={searchType} ref={selectRef} onChange={selectChangeHandler}>
+    <form className="search" onSubmit={formSubmitHandler}>
+      <select
+        className="search__type"
+        name="type"
+        title="Search type"
+        value={searchType}
+        ref={typeRef}
+        onChange={typeChangeHandler}
+      >
         { Object.keys(MapTypeToHint).map((type, i) => (<option key={i} value={type}>{type[0]}</option>)) }
       </select>
-      <input type="text" placeholder={searchHint} ref={inputRef} onChange={inputChangeHandler}/>
+      <input
+        className="search__query"
+        name="query"
+        type="text"
+        placeholder={searchHint}
+        ref={queryRef}
+        onChange={queryChangeHandler}
+      />
+      <div className="search__hint">
+        <span>
+        Type <b>@</b> to search by category
+        <br/>
+        Type <b>#</b> to search by keyword
+        <br/>
+        Type and press <b>Enter</b>
+        </span>
+      </div>
       <button type="submit" className="visually-hidden" tabIndex={-1}>Search</button>
     </form>
   );
