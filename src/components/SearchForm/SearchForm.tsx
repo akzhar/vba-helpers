@@ -5,13 +5,14 @@ import { useSearchParams, useLocation } from 'react-router-dom';
 import debounce from '@utils/debounce';
 import capitalize from '@utils/capitalize';
 
+import Button from '@components/Button';
 import ActionCreator from '@store/actions';
 
-const SearchTypeToHint: { [key: string]: string } =  {
-  t: 'search by title',
-  c: 'search by category',
-  k: 'search by keyword',
-  n: 'search by name'
+export const SearchTypeToHint: { [key: string]: string } =  {
+  t: 'искать по заголовку хелпера',
+  c: 'искать по категории хелпера',
+  k: 'искать по ключевой фразе',
+  n: 'искать по имени хелпера'
 };
 
 const INITIAL_SEARCH_TYPE = 'k';
@@ -23,6 +24,9 @@ const SymbolToSearchType: { [key: string]: string } =  {
   // eslint-disable-next-line quote-props
   '$': 'n'
 };
+
+const searchTypes = Object.keys(SearchTypeToHint);
+const symbols = Object.keys(SymbolToSearchType);
 
 const SearchForm: React.FC = () => {
 
@@ -51,7 +55,7 @@ const SearchForm: React.FC = () => {
     if(selectRef.current && inputRef.current) {
       selectRef.current.value = type;
       inputRef.current.value = query;
-      inputRef.current.placeholder = hint;
+      inputRef.current.placeholder = capitalize(hint);
     }
     inputRef.current?.focus();
     replaceURL({ type, query});
@@ -79,14 +83,22 @@ const SearchForm: React.FC = () => {
     }
   };
 
-  const typeChangeHandler = (evt: React.FormEvent<HTMLSelectElement>) => {
-    evt.preventDefault();
+  const typeChangeHandler = (type?: string) => {
     if(selectRef.current && inputRef.current) {
-      const type = selectRef.current.value;
+      if(type) {
+        selectRef.current.value = type;
+      } else {
+        type = selectRef.current.value;
+      }
       inputRef.current.placeholder = capitalize(SearchTypeToHint[type]);
       inputRef.current.focus();
       replaceURL({ type });
     }
+  };
+
+  const selectChangeHandler = (evt: React.FormEvent<HTMLSelectElement>) => {
+    evt.preventDefault();
+    typeChangeHandler();
   };
 
   const inputChangeHandler = (evt: React.FormEvent<HTMLInputElement>) => {
@@ -132,9 +144,9 @@ const SearchForm: React.FC = () => {
         name="type"
         title="Search type"
         ref={selectRef}
-        onChange={typeChangeHandler}
+        onChange={selectChangeHandler}
       >
-        { Object.keys(SearchTypeToHint).map((type, i) => (<option key={i} value={type}>{type.toUpperCase()}</option>)) }
+        { searchTypes.map((type, i) => (<option key={i} value={type}>{type.toUpperCase()}</option>)) }
       </select>
       <input
         className="search__query"
@@ -143,20 +155,19 @@ const SearchForm: React.FC = () => {
         ref={inputRef}
         onChange={dbInputChangeHandler}
       />
-      <div className="search__hint">
-        <span>
-        Type <b>!</b> to {SearchTypeToHint[SymbolToSearchType['!']]}
-        <br/>
-        Type <b>@</b> to {SearchTypeToHint[SymbolToSearchType['@']]}
-        <br/>
-        Type <b>#</b> to {SearchTypeToHint[SymbolToSearchType['#']]}
-        <br/>
-        Type <b>$</b> to {SearchTypeToHint[SymbolToSearchType['$']]}
-        <br/>
-        To search press <b>Enter</b>
-        </span>
-      </div>
-      <button type="submit" className="visually-hidden" tabIndex={-1}>Search</button>
+      <ul className="search__hints">
+        {symbols.map((symbol: string) => {
+          const type = SymbolToSearchType[symbol];
+          const hint = SearchTypeToHint[type];
+          return (
+          <li key={symbol}>
+            <Button clickHandler={() => typeChangeHandler(type)}>
+              <b>{symbol}</b> - {hint}
+            </Button>
+          </li>
+        )})}
+        <li><button type="submit" className="button"><b>Enter</b> - искать</button></li>
+      </ul>
     </form>
   );
 }

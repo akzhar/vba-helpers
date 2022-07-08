@@ -23,7 +23,7 @@ const Categories: React.FC = () => {
 
   return (
     <section className="categories">
-      <Header id="categories" text="Категории" />
+      <Header id="categories" text="Категории хелперов" />
       <ul>
         { categories.length
           ?

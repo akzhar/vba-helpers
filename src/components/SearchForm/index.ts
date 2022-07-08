@@ -1,3 +1,4 @@
-import SearchForm from './SearchForm';
+import SearchForm, { SearchTypeToHint } from './SearchForm';
 
+export { SearchTypeToHint };
 export default SearchForm;

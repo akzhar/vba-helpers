@@ -13,7 +13,9 @@
     left: 12px
     transform: translateY(-50%)
     border: none
-    color: $color-grey
+    color: $color-grey-dark
+    font-size: 12px
+    font-weight: 600
     background-color: inherit
 
     &:hover
@@ -21,7 +23,7 @@
 
   &__query
     display: block
-    width: 90%
+    width: 80%
     padding: 20px 20px 20px 60px
     border: none
     color: $color-grey-dark
@@ -34,16 +36,21 @@
       font-style: italic
       color: $color-grey-light
 
-  &__hint
-    width: 10%
+  &__hints
+    width: 20%
     min-width: 160px
+    margin: 0
     padding: 10px 20px
+    font-size: 12px
+    color: $color-grey
+    list-style: none
 
-    & span
-      display: inline-block
-      color: $color-grey
-      font-size: 12px
-      line-height: 18px
+    & li
+      text-align: center
 
       & b
         color: $color-grey-dark
+
+      & .button
+        padding: 0 2px 2px 2px
+        font-size: 12px
