@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-type IHeaderProps = {
+import Anchor from '@components/Anchor';
+
+type THeaderProps = {
   id: string,
   text: string
 };
 
-const Header: React.FC<IHeaderProps> = ({ id, text }) => {
+const Header: React.FC<THeaderProps> = ({ id, text }) => {
 
   const { pathname } = useLocation();
 
@@ -14,11 +16,7 @@ const Header: React.FC<IHeaderProps> = ({ id, text }) => {
     <div className="header">
       <h2 id={id}>
         {text}
-        <Link to={`${pathname}#${id}`}>
-          <svg width="20" height="20">
-            <use xlinkHref="#chain" />
-          </svg>
-        </Link>
+        <Anchor url={`${pathname}#${id}`} aria-label="Link to the header" />
       </h2>
     </div>
   );
