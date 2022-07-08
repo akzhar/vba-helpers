@@ -14,7 +14,6 @@ const About: React.FC = () => (
         <dd>вспомогательная процедура / функция</dd>
       </dl>
       <p>Хелперы хранятся в виде <b>.bas</b> файлов и разделены на категории</p>
-      <p>Категории хелперов представлены на отдельной <Button url={AppRoutes.CATEGORIES}>странице</Button></p>
     </div>
     <div className="about__column">
       <p>Поиск возможен:</p>

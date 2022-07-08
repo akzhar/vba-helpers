@@ -5,9 +5,8 @@ type TCodeLinks = { [key: string]: string };
 type TContactLinks = { [key: string]: string };
 
 export const AppRoutes: TAppRoutes = {
-  CATEGORIES: '/',
-  SEARCH: '/search',
-  ABOUT: '/about'
+  HOME: '/',
+  SEARCH: '/search'
 };
 
 export const CodeLinks: TCodeLinks = {
