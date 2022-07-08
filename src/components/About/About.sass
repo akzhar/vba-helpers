@@ -1,26 +1,17 @@
 .about
-  display: flex
-  margin-bottom: 60px
-  font-size: 16px
-  text-align: center
 
-  &__column
-    width: 50%
-    padding-right: 40px
+  & ol
+    margin: 0 0 16px 0
+    display: inline-block
 
-    &:last-child
-      padding-right: 0
+    & li
+      margin-bottom: 5px
+      text-align: left
 
-    & ul
-      margin: 0 0 16px 0
-      display: inline-block
+  & p
+    margin-top: 0
 
-      & li
-        margin-bottom: 5px
-        text-align: left
-
-    & p
-      margin-top: 0
+  & dl
 
     & dt
       display: inline
@@ -31,4 +22,5 @@
       display: inline
       margin: 0
       padding-left: 4px
+      color: $color-grey
       font-style: italic

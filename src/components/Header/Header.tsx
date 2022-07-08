@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 type IHeaderProps = {
   id: string,
@@ -14,11 +14,11 @@ const Header: React.FC<IHeaderProps> = ({ id, text }) => {
     <div className="header">
       <h2 id={id}>
         {text}
-        <a href={`${pathname}#${id}`}>
+        <Link to={`${pathname}#${id}`}>
           <svg width="20" height="20">
             <use xlinkHref="#chain" />
           </svg>
-        </a>
+        </Link>
       </h2>
     </div>
   );

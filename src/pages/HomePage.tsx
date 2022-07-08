@@ -6,8 +6,14 @@ import Contacts from '@components/Contacts';
 const HomePage: React.FC = () => (
   <>
     <h1 className="visually-hidden">About</h1>
-    <About />
-    <Contacts />
+    <section className="home">
+      <div className="home__column">
+        <About/>
+      </div>
+      <div className="home__column">
+        <Contacts />
+      </div>
+    </section>
   </>
 );
 
