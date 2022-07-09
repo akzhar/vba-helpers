@@ -2,13 +2,19 @@ import { ActionTypes, TAction } from '@store/actions';
 import { INITIAL_SEARCH_TYPE } from '@components/SearchForm';
 
 export type TSearchState = {
-  type: string,
-  query: string
+  params: {
+    type: string,
+    query: string
+  },
+  run: boolean
 };
 
 export const initialSearchState: TSearchState = {
-  type: INITIAL_SEARCH_TYPE,
-  query: ''
+  params: {
+    type: INITIAL_SEARCH_TYPE,
+    query: ''
+  },
+  run: false
 };
 
 const reducerSearch = (state: TSearchState = initialSearchState, action: TAction) => {
@@ -16,13 +22,13 @@ const reducerSearch = (state: TSearchState = initialSearchState, action: TAction
     case ActionTypes.RESET_SEARCH: {
       return initialSearchState;
     }
-    case ActionTypes.SET_SEARCH_TYPE: {
-      state.type = action.payload;
-      return state;
+    case ActionTypes.SET_SEARCH_PARAMS: {
+      state.params = action.payload;
+      return {...state};
     }
-    case ActionTypes.SET_SEARCH_QUERY: {
-      state.query = action.payload;
-      return state;
+    case ActionTypes.SET_SEARCH_RUN_FLAG: {
+      state.run = action.payload;
+      return {...state};
     }
     default:
       return {...state};

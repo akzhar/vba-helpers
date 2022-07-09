@@ -35,7 +35,7 @@ const SearchForm: React.FC = () => {
   const {search} = useLocation();
   const paramType = searchParams.get('type');
   const paramQuery = searchParams.get('query');
-  const { type: storeType, query: storeQuery } = useSelector((state: TState) => state.search);
+  const { type: storeType, query: storeQuery } = useSelector((state: TState) => state.search.params);
 
   const getValues = () => {
     const type = selectRef.current?.value;
@@ -87,9 +87,8 @@ const SearchForm: React.FC = () => {
   function runSearch() {
     const [type, query] = getValues();
     if(type && query) {
-      dispatch(ActionCreator.setSearchType({ type }));
-      dispatch(ActionCreator.setSearchQuery({ query }));
-      dispatch(ActionCreator.setInfoMessage({ label: '😊', text: `Поиск по запросу <${query}>...` }));
+      dispatch(ActionCreator.setSearchParams({ type, query }));
+      dispatch(ActionCreator.setSearchRunFlag({ run: true }));
     }
   }
 

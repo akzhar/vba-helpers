@@ -13,8 +13,8 @@ export enum ActionTypes {
   HIDE_MESSAGE = 'hide message',
   // search
   RESET_SEARCH = 'reset search',
-  SET_SEARCH_TYPE = 'set search type',
-  SET_SEARCH_QUERY = 'set search query'
+  SET_SEARCH_PARAMS = 'set search params',
+  SET_SEARCH_RUN_FLAG = 'set search run flag'
 }
 
 interface ISetMessage {
@@ -22,12 +22,13 @@ interface ISetMessage {
   text?: string
 }
 
-interface ISetSearchType {
-  type: string
+interface ISetSearchParams {
+  type: string,
+  query: string
 }
 
-interface ISetSearchQuery {
-  query: string
+interface ISetSearchRunFlag {
+  run: boolean
 }
 
 const ActionCreator = {
@@ -49,11 +50,11 @@ const ActionCreator = {
       }, 1500);
     }
   },
-  setSearchType: ({ type }: ISetSearchType) => {
-    return { type: ActionTypes.SET_SEARCH_TYPE, payload: type }
+  setSearchParams: ({ type, query }: ISetSearchParams) => {
+    return { type: ActionTypes.SET_SEARCH_PARAMS, payload: { type, query } };
   },
-  setSearchQuery: ({ query }: ISetSearchQuery) => {
-    return { type: ActionTypes.SET_SEARCH_QUERY, payload: query }
+  setSearchRunFlag: ({ run }: ISetSearchRunFlag) => {
+    return { type: ActionTypes.SET_SEARCH_RUN_FLAG, payload: run };
   }
 };
 
