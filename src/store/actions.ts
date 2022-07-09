@@ -14,7 +14,7 @@ export enum ActionTypes {
   // search
   RESET_SEARCH = 'reset search',
   SET_SEARCH_PARAMS = 'set search params',
-  SET_SEARCH_RUN_FLAG = 'set search run flag'
+  SET_SEARCH_LOADING = 'set search loading flag'
 }
 
 interface ISetMessage {
@@ -27,8 +27,8 @@ interface ISetSearchParams {
   query: string
 }
 
-interface ISetSearchRunFlag {
-  run: boolean
+interface ISetSearchIsLoading {
+  flag: boolean
 }
 
 const ActionCreator = {
@@ -53,8 +53,8 @@ const ActionCreator = {
   setSearchParams: ({ type, query }: ISetSearchParams) => {
     return { type: ActionTypes.SET_SEARCH_PARAMS, payload: { type, query } };
   },
-  setSearchRunFlag: ({ run }: ISetSearchRunFlag) => {
-    return { type: ActionTypes.SET_SEARCH_RUN_FLAG, payload: run };
+  setSearchIsLoading: ({ flag }: ISetSearchIsLoading) => {
+    return { type: ActionTypes.SET_SEARCH_LOADING, payload: flag };
   }
 };
 

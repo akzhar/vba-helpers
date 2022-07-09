@@ -12,11 +12,9 @@ import { TState } from '@store/reducer';
 const HelperList: React.FC = () => {
 
   const api = new Api();
-  const [isLoading, setIsloading] = useState(false);
   const [helpers, setHelpers] = useState<THelper[]>([]);
 
-  const { type: searchType, query: searchQuery } = useSelector((state: TState) => state.search.params);
-  const { run: searchRunFlag } = useSelector((state: TState) => state.search);
+  const { params: { type: searchType, query: searchQuery }, isLoading } = useSelector((state: TState) => state.search);
 
   const dispatch = useDispatch();
 
@@ -43,8 +41,7 @@ const HelperList: React.FC = () => {
     }
     const fetchHelpers = async () => await getHelpers(searchQuery);
 
-    if(searchRunFlag && searchType && searchQuery) {
-      setIsloading(true);
+    if(isLoading && searchType && searchQuery) {
       fetchHelpers()
         .then((helpers: THelper[]) => {
           setHelpers(helpers);
@@ -62,12 +59,11 @@ const HelperList: React.FC = () => {
           ));
         })
         .finally(() => {
-          setIsloading(false);
-          dispatch(ActionCreator.setSearchRunFlag({ run: false }));
+          dispatch(ActionCreator.setSearchIsLoading({ flag: false }));
         });
     }
 
-  }, [searchRunFlag]);
+  }, [isLoading]);
 
   return (
     <>

@@ -88,7 +88,7 @@ const SearchForm: React.FC = () => {
     const [type, query] = getValues();
     if(type && query) {
       dispatch(ActionCreator.setSearchParams({ type, query }));
-      dispatch(ActionCreator.setSearchRunFlag({ run: true }));
+      dispatch(ActionCreator.setSearchIsLoading({ flag: true }));
     }
   }
 

@@ -8,14 +8,9 @@ const Message: React.FC = () => {
   const {isVisible, isWarning, label, text} = useSelector((state: TState) => state.message);
 
   return (
-    <>
-      {
-        isVisible &&
-        <div className={`message ${isWarning ? 'message--warning' : ''}`}>
-          <b>{label}</b> {text}
-        </div>
-      }
-    </>
+    <div className={`message ${isWarning ? 'message--warning' : ''}${isVisible ? ' message--show' : ''}`}>
+      <b>{label}</b> {text}
+    </div>
   );
 }
 

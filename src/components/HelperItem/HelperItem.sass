@@ -1,32 +1,82 @@
 .helper
 
+  &__name
+    color: $color-grey
+
+  &__category
+    padding: 0 0 0 20px
+    color: $color-grey
+    font-size: 14px
+
   & summary
-    position: relative
     padding: 16px
 
+    &:hover
+      cursor: pointer
+
     & .anchor
-      position: absolute
-      top: 50%
-      right: 16px
-      transform: translateY(-50%)
+      margin-left: 12px
 
   &__details
     display: flex
+    padding-bottom: 16px
 
     &-column
-      margin: 0
-      padding: 20px
+      padding: 0 20px
       border-right: 1px solid $color-grey-light
-      +bounds()
+      font-size: 16px
+
+      &:last-child
+        border-right: none
+
+      & h3
+        margin: 0 0 12px 0
+        font-size: 18px
+        font-weight: 400
+        color: $color-grey
+
+      & a svg
+        margin-left: 6px
+        fill: $color-green-dark
 
       &:nth-child(1)
-        width: 40%
         display: flex
         flex-direction: column
+        width: 30%
+
+        & .helper__links
+          display: flex
+          margin-top: auto
+
+          & a
+            margin-right: 14px
+
+            &:last-child
+              margin-right: 0
 
       &:nth-child(2)
         width: 30%
 
       &:nth-child(3)
-        width: 30%
+        width: 40%
+        min-width: 40%
 
+  &__example
+    width: 100%
+    display: flex
+    font-size: 12px
+    line-height: 18px
+    overflow: auto
+
+    & code
+      width: 94%
+      padding: 1em
+      background-color: $color-background
+
+  &__code-lines
+    width: 6%
+    padding: 1em 1em 1em 0
+    display: flex
+    flex-direction: column
+    color: $color-grey
+    text-align: right

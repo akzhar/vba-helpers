@@ -6,7 +6,7 @@ export type TSearchState = {
     type: string,
     query: string
   },
-  run: boolean
+  isLoading: boolean
 };
 
 export const initialSearchState: TSearchState = {
@@ -14,7 +14,7 @@ export const initialSearchState: TSearchState = {
     type: INITIAL_SEARCH_TYPE,
     query: ''
   },
-  run: false
+  isLoading: false
 };
 
 const reducerSearch = (state: TSearchState = initialSearchState, action: TAction) => {
@@ -23,12 +23,10 @@ const reducerSearch = (state: TSearchState = initialSearchState, action: TAction
       return initialSearchState;
     }
     case ActionTypes.SET_SEARCH_PARAMS: {
-      state.params = action.payload;
-      return {...state};
+      return {...state, params: action.payload};
     }
-    case ActionTypes.SET_SEARCH_RUN_FLAG: {
-      state.run = action.payload;
-      return {...state};
+    case ActionTypes.SET_SEARCH_LOADING: {
+      return {...state, isLoading: action.payload};
     }
     default:
       return {...state};
