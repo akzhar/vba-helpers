@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import Api, { THelper } from '@services/Api';
 import getNoun from '@utils/getNoun';
 
@@ -8,13 +8,15 @@ import HelperItem from '@components/HelperItem';
 import ActionCreator from '@store/actions';
 import { TState } from '@store/reducer';
 
-
 const HelperList: React.FC = () => {
 
   const api = new Api();
   const [helpers, setHelpers] = useState<THelper[]>([]);
 
-  const { params: { type: searchType, query: searchQuery }, isLoading } = useSelector((state: TState) => state.search);
+  const { params: { type: searchType, query: searchQuery }, isLoading } = useSelector(
+    (state: TState) => state.search,
+    shallowEqual
+  );
 
   const dispatch = useDispatch();
 
@@ -36,14 +38,21 @@ const HelperList: React.FC = () => {
       case 'n':
         getHelpers = api.getHelpersByName;
         break;
+      case 'i':
+        getHelpers = api.getHelpersById;
+        break;
       default:
         break;
     }
+
     const fetchHelpers = async () => await getHelpers(searchQuery);
 
     if(isLoading && searchType && searchQuery) {
       fetchHelpers()
         .then((helpers: THelper[]) => {
+          if(!Array.isArray(helpers)) {
+            helpers = [helpers];
+          }
           setHelpers(helpers);
           const count = helpers.length;
           const foundWord = getNoun(count, 'Найден', 'Найдено', 'Найдено');
@@ -77,7 +86,7 @@ const HelperList: React.FC = () => {
           <ul className="helpers">
             {helpers.map((item: THelper) => (
               <li key={item.id} className="helpers__item">
-                <HelperItem {...item} />
+                <HelperItem helper={item} open={helpers.length === 1} />
               </li>
             ))}
           </ul>

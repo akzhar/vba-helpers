@@ -1,12 +1,8 @@
 import React from 'react';
 
-import Button from '@components/Button';
 import Header from '@components/Header';
-import { SearchTypeToHint } from '@components/SearchForm';
-import { AppRoutes } from '@consts/const';
 
 const VBA_WIKI_URL = 'https://ru.wikipedia.org/wiki/Visual_Basic_for_Applications';
-const searchTypes = Object.keys(SearchTypeToHint);
 
 const About: React.FC = () => (
   <section className="about">
@@ -39,14 +35,6 @@ const About: React.FC = () => (
       Для более удобного поиска все хелперы разделены на категории.
       А также реализовано несколько способо найти нужный хелпер.
     </p>
-    <Header id="search-methods" text={`${searchTypes.length} способа найти хелпер`}/>
-    <ol>
-      {searchTypes.map(type => (
-        <li key={type}>
-          <Button url={`${AppRoutes.SEARCH}?type=${type}`}>{SearchTypeToHint[type]}</Button>
-        </li>
-      ))}
-    </ol>
   </section>
 );
 

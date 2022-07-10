@@ -13,7 +13,8 @@ export const SearchTypeToHint: { [key: string]: string } =  {
   t: 'искать по заголовку хелпера',
   c: 'искать по категории хелпера',
   k: 'искать по ключевой фразе',
-  n: 'искать по имени хелпера'
+  n: 'искать по имени хелпера',
+  i: 'искать по ID хелпера'
 };
 
 export const INITIAL_SEARCH_TYPE = 'k';
@@ -106,6 +107,7 @@ const SearchForm: React.FC = () => {
       }
       if(type) {
         inputRef.current.placeholder = capitalize(SearchTypeToHint[type]);
+        inputRef.current.value = '';
         inputRef.current.focus();
         replaceURL({ type });
       }
@@ -155,22 +157,24 @@ const SearchForm: React.FC = () => {
 
   return (
     <form className="search" onSubmit={formSubmitHandler}>
-      <select
-        className="search__type"
-        name="type"
-        title="Search type"
-        ref={selectRef}
-        onChange={selectChangeHandler}
-      >
-        { searchTypes.map((type, i) => (<option key={i} value={type}>{type.toUpperCase()}</option>)) }
-      </select>
-      <input
-        className="search__query"
-        name="query"
-        type="text"
-        ref={inputRef}
-        onChange={dbInputChangeHandler}
-      />
+      <fieldset className="search__input">
+        <select
+          className="search__type"
+          name="type"
+          title="Search type"
+          ref={selectRef}
+          onChange={selectChangeHandler}
+        >
+          { searchTypes.map((type, i) => (<option key={i} value={type}>{type.toUpperCase()}</option>)) }
+        </select>
+        <input
+          className="search__query"
+          name="query"
+          type="text"
+          ref={inputRef}
+          onChange={dbInputChangeHandler}
+        />
+      </fieldset>
       <ul className="search__hints">
         {symbols.map((symbol: string) => {
           const type = SymbolToSearchType[symbol];

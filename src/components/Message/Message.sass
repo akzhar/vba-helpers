@@ -8,9 +8,13 @@
   border-radius: 4px
   background-color: $color-msg-info-back
   color: $color-msg-info-text
+  font-size: 18px
   z-index: 2
   +shadow()
   +animation-slide-in-top()
+
+  @media(min-width: $width-mobile)
+    font-size: inherit
 
   &--show
     display: block

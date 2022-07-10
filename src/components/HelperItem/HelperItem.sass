@@ -4,12 +4,13 @@
     color: $color-grey
 
   &__category
+    margin-bottom: 16px
     padding: 0 0 0 20px
     color: $color-grey
     font-size: 14px
 
   & summary
-    padding: 16px
+    padding: 24px 16px
 
     &:hover
       cursor: pointer
@@ -19,21 +20,34 @@
 
   &__details
     display: flex
-    padding-bottom: 16px
+    flex-direction: column
+
+    @media(min-width: $width-mobile)
+      flex-direction: row
+      padding-bottom: 24px
 
     &-column
-      padding: 0 20px
-      border-right: 1px solid $color-grey-light
+      padding: 0 16px
+      padding-bottom: 16px
+      border-bottom: 2px solid $color-grey-light
       font-size: 16px
 
+      @media(min-width: $width-mobile)
+        padding-bottom: 0px
+        border-bottom: none
+        border-right: 2px solid $color-grey-light
+
       &:last-child
-        border-right: none
+        border: none
 
       & h3
-        margin: 0 0 12px 0
+        margin: 12px 0
         font-size: 18px
         font-weight: 400
         color: $color-grey
+
+      & p:last-child
+        margin-bottom: 0
 
       & a svg
         margin-left: 6px
@@ -42,7 +56,9 @@
       &:nth-child(1)
         display: flex
         flex-direction: column
-        width: 30%
+
+        @media(min-width: $width-mobile)
+          width: 30%
 
         & .helper__links
           display: flex
@@ -55,28 +71,34 @@
               margin-right: 0
 
       &:nth-child(2)
-        width: 30%
+
+        @media(min-width: $width-mobile)
+          width: 30%
 
       &:nth-child(3)
-        width: 40%
-        min-width: 40%
 
-  &__example
+        @media(min-width: $width-mobile)
+          width: 40%
+          min-width: 40%
+
+  pre.helper__example
     width: 100%
     display: flex
     font-size: 12px
-    line-height: 18px
-    overflow: auto
+    line-height: 20px
+    background-color: $color-background
+
+    & .helper__code-lines
+      width: 6%
+      padding: 16px 8px
+      display: flex
+      flex-direction: column
+      color: $color-green-dark
+      font-weight: 600
+      text-align: center
 
     & code
+      display: block
       width: 94%
-      padding: 1em
-      background-color: $color-background
-
-  &__code-lines
-    width: 6%
-    padding: 1em 1em 1em 0
-    display: flex
-    flex-direction: column
-    color: $color-grey
-    text-align: right
+      padding: 16px 0
+      overflow: auto
