@@ -48,7 +48,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open}) => {
         <div className="helper__column">
           <h3 className="helper__header">Описание</h3>
           <p>{helper.title}</p>
-          <p>{helper.description}</p>
+          {helper.description && <p>{helper.description}</p>}
         </div>
       </div>
       <div className="helper__example">
