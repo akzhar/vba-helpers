@@ -1,22 +1,35 @@
 .helper
 
+  & summary
+    display: flex
+    padding: 20px
+
+    &:hover
+      cursor: pointer
+      opacity: 0.6
+
+    & .anchor
+      margin-left: auto
+
   &__name
     color: $color-grey
 
   &__category
-    margin-bottom: 16px
+    margin: 0
     padding: 0 0 0 20px
     color: $color-grey
-    font-size: 14px
+    font-size: 12px
 
-  & summary
-    padding: 24px 16px
+    @media(min-width: $width-mobile)
+      margin-bottom: 16px
 
-    &:hover
-      cursor: pointer
+    & li::marker
+      font-weight: 600
+      color: $color-grey-dark
 
-    & .anchor
-      margin-left: 12px
+  &__details,
+  &__example
+    padding: 0 20px 20px 20px
 
   &__details
     display: flex
@@ -24,81 +37,87 @@
 
     @media(min-width: $width-mobile)
       flex-direction: row
-      padding-bottom: 24px
 
-    &-column
-      padding: 0 16px
-      padding-bottom: 16px
+    & > .helper__column
+      box-sizing: border-box
+      width: 100%
+      padding: 20px 0
       border-bottom: 2px solid $color-grey-light
       font-size: 16px
 
+      & p
+        margin: 12px 0
+
+        &:last-child
+          margin-bottom: 0
+
+      &:first-child
+        display: flex
+        flex-direction: row-reverse
+        justify-content: space-between
+        padding-top: 0
+
+        @media(min-width: $width-mobile)
+          display: block
+
       @media(min-width: $width-mobile)
-        padding-bottom: 0px
+        width: auto
+        padding: 0
         border-bottom: none
         border-right: 2px solid $color-grey-light
 
-      &:last-child
-        border: none
+        &:last-child
+          border-right: none
 
-      & h3
-        margin: 12px 0
-        font-size: 18px
-        font-weight: 400
-        color: $color-grey
+        &:nth-child(odd)
+          padding-right: 60px
 
-      & p:last-child
-        margin-bottom: 0
+        &:nth-child(even)
+          padding-left: 60px
 
-      & a svg
-        margin-left: 6px
+  &__links
+    display: flex
+    flex-direction: column
+
+    & a
+      font-size: 14px
+
+      &:hover
+        opacity: 0.6
+
+      & svg
+        margin-right: 12px
         fill: $color-green-dark
 
-      &:nth-child(1)
+      &:last-child
+        margin-right: 0
+
+  &__header
+    margin: 0 0 12px 0
+    font-size: 18px
+    font-weight: 400
+    color: $color-grey
+
+  &__example
+
+    & pre
+      width: 100%
+      margin: 0
+      display: flex
+      font-size: 12px
+      line-height: 20px
+      background-color: $color-background
+
+      & .helper__code-lines
+        padding: 16px
         display: flex
         flex-direction: column
+        color: $color-green-dark
+        font-weight: 600
+        text-align: center
 
-        @media(min-width: $width-mobile)
-          width: 30%
-
-        & .helper__links
-          display: flex
-          margin-top: auto
-
-          & a
-            margin-right: 14px
-
-            &:last-child
-              margin-right: 0
-
-      &:nth-child(2)
-
-        @media(min-width: $width-mobile)
-          width: 30%
-
-      &:nth-child(3)
-
-        @media(min-width: $width-mobile)
-          width: 40%
-          min-width: 40%
-
-  pre.helper__example
-    width: 100%
-    display: flex
-    font-size: 12px
-    line-height: 20px
-    background-color: $color-background
-
-    & .helper__code-lines
-      width: 6%
-      padding: 16px 8px
-      display: flex
-      flex-direction: column
-      color: $color-green-dark
-      font-weight: 600
-      text-align: center
-
-    & code
-      display: block
-      width: 94%
-      padding: 16px 0
-      overflow: auto
+      & code
+        display: block
+        width: 96%
+        padding: 16px 8px
+        overflow: auto

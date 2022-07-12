@@ -27,7 +27,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open}) => {
         <Anchor url={`${AppRoutes.SEARCH}?type=i&query=${helper.id}`} aria-label="Link to the helper"/>
       </summary>
       <div className="helper__details">
-        <div className="helper__details-column">
+        <div className="helper__column">
           <ul className="helper__category">
             {
               helper.category.map((el, i) => (<li key={i}>{el}</li>))
@@ -36,42 +36,44 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open}) => {
           {/* <span className="helper__category">{`${helper.category.join(' | ')}`}</span> */}
           <span className="helper__links">
             <a href={`${HelperLinks.VIEW}/${helper.file}`} target="_blank" rel="noreferrer">
-              <span>Посмотреть код</span><svg width="16" height="16"><use xlinkHref="#eye" /></svg>
+              <svg width="12" height="12"><use xlinkHref="#eye" /></svg>
+              <span>Смотреть код</span>
             </a>
             <a href={`${HelperLinks.RAW}/${helper.file}`} target="_blank" rel="noreferrer">
-              <span>Файл .bas</span><svg width="16" height="16"><use xlinkHref="#script" /></svg>
+              <svg width="12" height="12"><use xlinkHref="#script" /></svg>
+              <span>Файл .bas</span>
             </a>
           </span>
         </div>
-        <div className="helper__details-column">
-          <h3>Описание</h3>
+        <div className="helper__column">
+          <h3 className="helper__header">Описание</h3>
           <p>{helper.title}</p>
           <p>{helper.description}</p>
         </div>
-        <div className="helper__details-column">
-          <h3>Пример использования</h3>
-          {
-            helper.usage.length
-            ?
-            <pre className="helper__example">
-              <div className="helper__code-lines">
-                {
-                  new Array(codeLinesCount).fill(0).map((_n, i) => (<span key={i}>{i + 1}</span>))
-                }
-              </div>
-              <code className="language-vba">
-                {helper.usage}
-              </code>
-              <div className="helper__code-lines">
-                {
-                  new Array(codeLinesCount).fill(0).map((_n, i) => (<span key={i}>{i + 1}</span>))
-                }
-              </div>
-            </pre>
-            :
-            'Нет'
-          }
-        </div>
+      </div>
+      <div className="helper__example">
+        <h3 className="helper__header">Пример использования</h3>
+        {
+          helper.usage.length
+          ?
+          <pre>
+            <div className="helper__code-lines">
+              {
+                new Array(codeLinesCount).fill(0).map((_n, i) => (<span key={i}>{i + 1}</span>))
+              }
+            </div>
+            <code className="language-vba">
+              {helper.usage}
+            </code>
+            <div className="helper__code-lines">
+              {
+                new Array(codeLinesCount).fill(0).map((_n, i) => (<span key={i}>{i + 1}</span>))
+              }
+            </div>
+          </pre>
+          :
+          'Нет'
+        }
       </div>
     </details>
   );

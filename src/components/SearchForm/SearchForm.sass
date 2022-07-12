@@ -21,7 +21,9 @@
       width: 80%
 
   &__type
-    padding: 0 20px 0 10px
+    display: none
+    padding: 0 20px
+    margin-right: 10px
     border: none
     color: $color-grey-dark
     font-size: 12px
@@ -30,6 +32,9 @@
 
     &:hover
       cursor: pointer
+
+    @media(min-width: $width-mobile)
+      display: block
 
   &__query
     display: block
@@ -40,11 +45,10 @@
     background-color: inherit
     border-radius: inherit
     font-family: 'RobertoSans-Regular', Tahoma, sans-serif
-    font-size: 16px
+    font-size: 20px
     text-align: center
 
     @media(min-width: $width-mobile)
-      font-size: 20px
       text-align: left
 
     &::placeholder
