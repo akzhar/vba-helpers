@@ -59,7 +59,6 @@ const SearchForm: React.FC = () => {
       inputRef.current.value = query;
       inputRef.current.placeholder = capitalize(hint);
     }
-    inputRef.current?.focus();
     replaceURL({ type, query});
     // Run search only if URL params comes from the URL (paste link)
     if(paramType && paramQuery) {
