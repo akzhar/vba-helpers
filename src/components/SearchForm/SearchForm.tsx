@@ -158,6 +158,7 @@ const SearchForm: React.FC = () => {
     <form className="search" onSubmit={formSubmitHandler}>
       <fieldset className="search__input">
         <select
+          data-testid="search-select"
           className="search__type"
           name="type"
           title="Search type"
@@ -167,6 +168,7 @@ const SearchForm: React.FC = () => {
           { searchTypes.map((type, i) => (<option key={i} value={type}>{type.toUpperCase()}</option>)) }
         </select>
         <input
+          data-testid="search-input"
           className="search__query"
           name="query"
           type="text"
@@ -185,7 +187,9 @@ const SearchForm: React.FC = () => {
             </Button>
           </li>
         )})}
-        <li><button type="submit" className="button"><b>Enter</b> - искать</button></li>
+        <li>
+          <button data-testid="search-submit" type="submit" className="button"><b>Enter</b> - искать</button>
+        </li>
       </ul>
     </form>
   );
