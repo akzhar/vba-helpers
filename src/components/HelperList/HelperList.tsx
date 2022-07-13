@@ -51,15 +51,21 @@ const HelperList: React.FC = () => {
       fetchHelpers()
         .then((helpers: THelper[]) => {
           if(!Array.isArray(helpers)) {
-            helpers = [helpers];
+            helpers = [];
           }
           setHelpers(helpers);
           const count = helpers.length;
-          const foundWord = getNoun(count, 'Найден', 'Найдено', 'Найдено');
-          const helperWord = getNoun(count, 'хелпер', 'хелпера', 'хелперов');
-          dispatch(ActionCreator.setInfoMessage(
-            { label: '😊', text: `${foundWord} ${count} ${helperWord}` }
-          ));
+          if(count) {
+            const foundWord = getNoun(count, 'Найден', 'Найдено', 'Найдено');
+            const helperWord = getNoun(count, 'хелпер', 'хелпера', 'хелперов');
+            dispatch(ActionCreator.setInfoMessage(
+              { label: '😊', text: `${foundWord} ${count} ${helperWord}` }
+            ));
+          } else {
+            dispatch(ActionCreator.setWarningMessage(
+              { label: '😭', text: 'Хелперы не найдены' }
+            ));
+          }
         })
         .catch((err) => {
           console.error('Fetch helpers error:', err);
