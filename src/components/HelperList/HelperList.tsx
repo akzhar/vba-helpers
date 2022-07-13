@@ -51,7 +51,11 @@ const HelperList: React.FC = () => {
       fetchHelpers()
         .then((helpers: THelper[]) => {
           if(!Array.isArray(helpers)) {
-            helpers = [];
+            if(Object.prototype.hasOwnProperty.call(helpers, 'id')) {
+              helpers = [helpers];
+            } else {
+              helpers = [];
+            }
           }
           setHelpers(helpers);
           const count = helpers.length;
