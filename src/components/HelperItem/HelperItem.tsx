@@ -16,7 +16,8 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open}) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: Property 'hljs' does not exist on type 'Window & typeof globalThis'
     const hljs = window.hljs;
-    hljs.configure({ ignoreUnescapedHTML: true }); // https://github.com/dullin/highlightjs-vba does paste html in code
+    // https://github.com/dullin/highlightjs-vba does paste html in code
+    hljs.configure({ ignoreUnescapedHTML: true, languages:['xml'] });
     hljs.highlightAll();
   }, []);
 
