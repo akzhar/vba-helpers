@@ -47,10 +47,16 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open}) => {
         </div>
         <div className="helper__column">
           <h3 className="helper__header">Описание</h3>
-          <p>{helper.title}</p>
-          {/*eslint-disable-next-line @typescript-eslint/ban-ts-comment*/}
-          {/*@ts-ignore: Property 'marked' does not exist on type 'Window & typeof globalThis'*/}
-          {helper.description && <p dangerouslySetInnerHTML={{__html: window.marked.parse(helper.description)}}></p>}
+          <div className="helper__description">
+            <p
+            className="helper__description"
+            dangerouslySetInnerHTML={
+              /*eslint-disable-next-line @typescript-eslint/ban-ts-comment*/
+              /*@ts-ignore: Property 'marked' does not exist on type 'Window & typeof globalThis'*/
+              {__html: `<p>${helper.title}</p>${helper.description ? window.marked.parse(helper.description) : ''}`}
+            }>
+            </p>
+          </div>
         </div>
       </div>
       <div className="helper__example">

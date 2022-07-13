@@ -39,6 +39,7 @@
       flex-direction: row
 
     & > .helper__column
+      box-sizing: border-box
       width: 100%
       padding: 20px 0
       border-bottom: 2px solid $color-grey-light
@@ -51,7 +52,7 @@
           margin-bottom: 0
 
       &:first-child
-        min-width: 140px
+        min-width: 160px
         display: flex
         flex-direction: row-reverse
         justify-content: space-between
@@ -70,10 +71,10 @@
           border-right: none
 
         &:nth-child(odd)
-          padding-right: 60px
+          padding-right: 20px
 
         &:nth-child(even)
-          padding-left: 60px
+          padding-left: 20px
 
   &__links
     display: flex
@@ -100,14 +101,16 @@
     font-weight: 400
     color: $color-grey
 
+  &__description
+    font-size: 14px
+
   &__example
 
     & pre
       width: 100%
       margin: 0
       display: flex
-      font-size: 12px
-      line-height: 20px
+      font-size: 14px
       background-color: $color-background
 
       & .helper__code-lines
