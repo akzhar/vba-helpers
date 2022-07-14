@@ -1,7 +1,7 @@
 // import { test, describe, expect } from '@jest/globals';
 import React from 'react';
 import * as redux from 'react-redux';
-import { applyMiddleware, Store, createStore } from 'redux';
+import { applyMiddleware, Store, createStore, Dispatch, Action } from 'redux';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';
@@ -105,7 +105,7 @@ global.fetch = jest.fn((url: string) => {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 window.marked = {
-  parse: (str: string) => str
+  parse: (textContent: string) => textContent
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -141,113 +141,98 @@ function renderApp(url: string, store: Store<TState> | MockStoreEnhanced<unknown
 
 }
 
-// describe('App routing works correctly', () => {
+ describe('App routing works correctly', () => {
 
-//   test('Render Home page when user navigates to /', () => {
-//     const url = '/';
-//     renderApp(url, mockedStore);
-//     expect(screen.getByRole('link', { current: true })).toHaveAttribute('href', url);
-//     expect(screen.getByText(HEADER_ABOUT)).toBeInTheDocument();
-//     expect(screen.queryByText(HEADER_CATEGORIES)).not.toBeInTheDocument();
-//   });
+   test('Render Home page when user navigates to /', () => {
+     const url = '/';
+     renderApp(url, mockedStore);
+     expect(screen.getByRole('link', { current: true })).toHaveAttribute('href', url);
+     expect(screen.getByText(HEADER_ABOUT)).toBeInTheDocument();
+     expect(screen.queryByText(HEADER_CATEGORIES)).not.toBeInTheDocument();
+   });
 
-//   test('Render Search page when user navigates to /search', async () => {
-//     const url = '/search';
-//     await act(() => {
-//       renderApp(url, mockedStore);
-//     });
-//     expect(screen.getByRole('link', { current: true })).toHaveAttribute('href', url);
-//     expect(screen.getByText(category0.category)).toBeInTheDocument();
-//     expect(screen.getByText(HEADER_CATEGORIES)).toBeInTheDocument();
-//     expect(screen.queryByText(HEADER_ABOUT)).not.toBeInTheDocument();
-//   });
+   test('Render Search page when user navigates to /search', async () => {
+     const url = '/search';
+     await act(() => {
+       renderApp(url, mockedStore);
+     });
+     expect(screen.getByRole('link', { current: true })).toHaveAttribute('href', url);
+     expect(screen.getByText(category0.category)).toBeInTheDocument();
+     expect(screen.getByText(HEADER_CATEGORIES)).toBeInTheDocument();
+     expect(screen.queryByText(HEADER_ABOUT)).not.toBeInTheDocument();
+   });
 
-//   test('Render 404 page when user navigates to wrong path', () => {
-//     const url = '/not-exist-path';
-//     renderApp(url, mockedStore);
-//     expect(screen.getByText('Такой страницы не найдено...')).toBeInTheDocument();
-//   });
+   test('Render 404 page when user navigates to wrong path', () => {
+     const url = '/not-exist-path';
+     renderApp(url, mockedStore);
+     expect(screen.getByText('Такой страницы не найдено...')).toBeInTheDocument();
+   });
 
-// });
+ });
+
+async function search(searchType: string, searchQuery: string) {
+  const url = '/search';
+  const realStore = createRealStore(initialState);
+  await act(() => {
+    renderApp(url, realStore);
+  });
+  const input = screen.getByTestId('search-input');
+  const select = screen.getByTestId('search-select');
+  await act(() => {
+    fireEvent.change(select, {target: { value: searchType }});
+    userEvent.type(input, searchQuery);
+    fireEvent.click(screen.getByTestId('search-submit'));
+  });
+  const state = await realStore.getState();
+  return state;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function doSearchTest(searchType: string, searchQuery: string, spy: jest.SpyInstance<Dispatch<Action<any>>, []>) {
+  const state = await search(searchType, searchQuery);
+  // 1 SET_SEARCH_PARAMS type, 2 SET_SEARCH_PARAMS query, 3 SET_SEARCH_LOADING true
+  // 4 SET_SEARCH_LOADING false, 5 SET_INFO_MESSAGE, 6 SHOW_MESSAGE, 7 RESET_MESSAGE
+  expect(spy).toBeCalledTimes(7);
+  expect(state.search.params.type).toBe(searchType);
+  expect(state.search.params.query).toBe(searchQuery);
+  expect(state.search.isLoading).toBe(false);
+  const helper = screen.getByTestId(`helper-${helper21.id}`);
+  expect(helper).toBeInTheDocument();
+}
 
 describe('User actions work correctly', () => {
 
   const spyDispatch = jest.spyOn(redux, 'useDispatch');
 
   test('User can search helper by title', async () => {
-    const query = 'Unix 13-digit time';
-    const url = '/search';
-    const realStore = createRealStore(initialState);
-
-    await act(() => {
-      renderApp(url, realStore);
-    });
-
-    const input = screen.getByTestId('search-input');
-    const select = screen.getByTestId('search-select');
-    userEvent.type(input, '!');
-    expect(select).toHaveValue('t');
-    userEvent.type(input, query);
-    await act(() => {
-      fireEvent.click(screen.getByTestId('search-submit'));
-    });
-    const state = await realStore.getState();
-    // const helperHeader = screen.getByText(helper21.name);
-    expect(spyDispatch).toBeCalled();
-    // expect(helperHeader).toHaveTextContent(query);
-    expect(state.search.params.type).toBe('t');
-    expect(state.search.params.query).toBe(query);
+    const searchType = 't';
+    const searchQuery = helper21.title;
+    await doSearchTest(searchType, searchQuery, spyDispatch);
   });
 
-  // test('User can close a task', async () => {
-  //   const text = 'Buy a bottle of water';
-  //   const task: TTask = { id: '123', text, isCompleted: false };
-  //   const url = '/';
-  //   const realStore = createRealStore({...initialState, tasks: { items: [task] }});
+  test('User can search helper by category', async () => {
+    const searchType = 'c';
+    const searchQuery = helper21.category[1];
+    await doSearchTest(searchType, searchQuery, spyDispatch);
+  });
 
-  //   renderApp(url, realStore);
-  //   const checkbox = screen.getByLabelText(text);
-  //   const li = screen.getByText(text);
+  test('User can search helper by keywords', async () => {
+    const searchType = 'k';
+    const searchQuery = helper21._keywords.split('\n')[0];
+    await doSearchTest(searchType, searchQuery, spyDispatch);
+  });
 
-  //   fireEvent.click(li);
-  //   const state = await realStore.getState();
-  //   expect(checkbox).toBeChecked();
-  //   expect(state.tasks.items[0].isCompleted).toBe(true);
-  // });
+  test('User can search helper by name', async () => {
+    const searchType = 'n';
+    const searchQuery = helper21.name;
+    await doSearchTest(searchType, searchQuery, spyDispatch);
+  });
 
-  // test('User can reopen a task', async () => {
-  //   const text = 'Buy a bottle of water';
-  //   const task: TTask = { id: '123', text, isCompleted: true };
-  //   const url = '/';
-  //   const realStore = createRealStore({...initialState, tasks: { items: [task] }});
+  test('User can search helper by id', async () => {
+    const searchType = 'i';
+    const searchQuery = helper21.id;
+    await doSearchTest(searchType, searchQuery, spyDispatch);
+  });
 
-  //   renderApp(url, realStore);
-  //   const checkbox = screen.getByLabelText(text);
-  //   const li = screen.getByText(text);
-
-  //   fireEvent.click(li);
-  //   const state = await realStore.getState();
-  //   expect(checkbox).not.toBeChecked();
-  //   expect(state.tasks.items[0].isCompleted).toBe(false);
-  // });
-
-  // test('User can clear completed tasks', async () => {
-  //   const text1 = 'Buy a bottle of water';
-  //   const text2 = 'Do homework';
-  //   const task1: TTask = { id: '123', text: text1, isCompleted: false };
-  //   const task2: TTask = { id: '321', text: text2, isCompleted: true };
-  //   const url = '/';
-  //   const realStore = createRealStore({...initialState, tasks: { items: [task1, task2] }});
-
-  //   renderApp(url, realStore);
-  //   const btn = screen.getByText('Clear completed');
-
-  //   fireEvent.click(btn);
-  //   const state = await realStore.getState();
-  //   expect(screen.getByText(text1)).toBeInTheDocument();
-  //   expect(screen.queryByText(text2)).not.toBeInTheDocument();
-  //   expect(state.tasks.items.length).toBe(1);
-  //   expect(state.tasks.items[0].id).toBe('123');
-  // });
 
 });

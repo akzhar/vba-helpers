@@ -95,7 +95,7 @@ const HelperList: React.FC = () => {
           ?
           <ul className="helpers">
             {helpers.map((item: THelper) => (
-              <li key={item.id} className="helpers__item">
+              <li key={item.id} data-testid={`helper-${item.id}`} className="helpers__item">
                 <HelperItem helper={item} open={helpers.length === 1} />
               </li>
             ))}
