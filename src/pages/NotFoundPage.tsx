@@ -8,7 +8,7 @@ const NotFoundPage: React.FC = () => (
       <meta name="keywords" content="VBA, helper, wrong address, not found"/>
       <title>wrong address - vba helpers</title>
     </Helmet>
-    <h1 className="visually-hidden">Not found page</h1>
+    <h1 className="visually-hidden">Страница 404</h1>
     <p style={{ textAlign: 'center'}}>Такой страницы не найдено...</p>
   </>
 );

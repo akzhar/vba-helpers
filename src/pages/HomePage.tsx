@@ -12,7 +12,7 @@ const HomePage: React.FC = () => (
       <meta name="keywords" content="VBA, helper, Excel, macros, script, collection, function, procedure"/>
       <title>home - vba helpers</title>
     </Helmet>
-    <h1 className="visually-hidden">About</h1>
+    <h1 className="visually-hidden">Домашняя страница</h1>
     <div className="home">
       <div className="home__column">
         <About/>

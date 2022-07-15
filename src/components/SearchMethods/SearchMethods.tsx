@@ -1,5 +1,5 @@
 import React from 'react';
-import getNoun from '@utils/getNoun';
+import getPlural from '@utils/getPlural';
 
 import Button from '@components/Button';
 import Header from '@components/Header';
@@ -12,7 +12,7 @@ const SearchMethods: React.FC = () => (
   <section className="search-methods">
     <Header
       id="search-methods"
-      text={`${searchTypes.length} ${getNoun(searchTypes.length, 'способ', 'способа', 'способов')} найти хелпер`}
+      text={`${searchTypes.length} ${getPlural(searchTypes.length, 'способ', 'способа', 'способов')} найти хелпер`}
     />
     <ol>
       {searchTypes.map(type => (

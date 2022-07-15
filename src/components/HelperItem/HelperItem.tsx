@@ -9,9 +9,10 @@ type THelperItemProps = {
   open: boolean
 };
 
-const HelperItem: React.FC<THelperItemProps> = ({helper, open}) => {
+const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
 
   const codeLinesCount = (helper.usage.match(/\n/g)||[]).length + 1;
+
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: Property 'hljs' does not exist on type 'Window & typeof globalThis'
@@ -22,7 +23,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open}) => {
   }, []);
 
   return (
-    <details className="helper" open={open}>
+    <details className="helper" open={isOpen}>
       <summary>
         <span className="helper__name">{helper.name}</span>
         <Anchor url={`${AppRoutes.SEARCH}?type=i&query=${helper.id}`} aria-label="Link to the helper"/>
@@ -34,8 +35,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open}) => {
               helper.category.map((el, i) => (<li key={i}>{el}</li>))
             }
           </ul>
-          {/* <span className="helper__category">{`${helper.category.join(' | ')}`}</span> */}
-          <span className="helper__links">
+          <div className="helper__links">
             <a href={`${HelperLinks.VIEW}/${helper.file}`} target="_blank" rel="noreferrer">
               <svg width="12" height="12"><use xlinkHref="#eye" /></svg>
               <span>Смотреть код</span>
@@ -44,20 +44,18 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open}) => {
               <svg width="12" height="12"><use xlinkHref="#script" /></svg>
               <span>Файл .bas</span>
             </a>
-          </span>
+          </div>
         </div>
         <div className="helper__column">
           <h3 className="helper__header">Описание</h3>
-          <div className="helper__description">
-            <p
+          <p
             className="helper__description"
             dangerouslySetInnerHTML={
               /*eslint-disable-next-line @typescript-eslint/ban-ts-comment*/
               /*@ts-ignore: Property 'marked' does not exist on type 'Window & typeof globalThis'*/
               {__html: `<p>${helper.title}</p>${helper.description ? window.marked.parse(helper.description) : ''}`}
             }>
-            </p>
-          </div>
+          </p>
         </div>
       </div>
       <div className="helper__example">
