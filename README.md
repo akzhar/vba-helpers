@@ -1,18 +1,18 @@
 # vba helpers
 
 ## 1. Описание
-`vba helpers` - это небольшая личная коллекция кусочков [VBA](https://ru.wikipedia.org/wiki/Visual_Basic_for_Applications) кода (хелперов) в формате `.bas` файлов.
+`vba helpers` - это небольшая коллекция кусочков [VBA](https://ru.wikipedia.org/wiki/Visual_Basic_for_Applications) кода (хелперов) в формате `.bas` файлов.
 
 `helper` - вспомогательная процедура / функция.
 
-Хелперы хранятся в [API репозитории](https://github.com/akzhar/vba-helpers-api/tree/main/data).
+Хелперы хранятся в [API репозитории](https://github.com/akzhar/vba-helpers-api/tree/main/data/code).
 
 ## 2. Ссылки
 - [Опубликованное приложение](https://vba-helpers.herokuapp.com)
 - [API репозиторий](https://github.com/akzhar/vba-helpers-api)
 
 ## 3. Описание функционала
-Интерфейс позволяей быстро получить нужный хелпер.
+Веб интерфейс позволяей найти и применить нужный хелпер в своем макросе.
 
 5 способов найти хелпер:
 - [искать по заголовку хелпера](https://vba-helpers.herokuapp.com/search?type=t)
