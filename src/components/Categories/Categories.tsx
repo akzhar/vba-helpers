@@ -1,53 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import Api, { TCategory } from '@services/Api';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { TCategory } from '@services/Api';
 
 import Loader from '@components/Loader';
 import Header from '@components/Header';
 import Button from '@components/Button';
 import { AppRoutes } from '@consts/const';
 import ActionCreator from '@store/actions';
+import { TState } from '@store/reducer';
 
 const Categories: React.FC = () => {
 
-  const api = new Api();
-  const [categories, setCategories] = useState<TCategory[]>([]);
+  const isLoading = useSelector((state: TState) => state.categories.isLoading);
+  const categories = useSelector((state: TState) => state.categories.items);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-
-    const fetchCategories = async () => await api.getCategories();
-
-    fetchCategories()
-      .then(categories => setCategories(categories))
-      .catch((err) => {
-        console.error('Fetch categories error:', err);
-        dispatch(ActionCreator.setWarningMessage(
-          { label: '😭', text: 'Ошибка получения категорий' }
-        ));
-      })
-
+    if(!categories.length) {
+      dispatch(ActionCreator.loadCategories());
+    }
   }, []);
 
   return (
     <section className="categories">
       <Header id="categories" text="Категории хелперов" />
-      <ul>
-        { categories.length
+        <>
+        { isLoading
           ?
-          categories.map((item: TCategory) => {
-            const searchUrl = `${AppRoutes.SEARCH}?type=c&query=${item.category}`
-            return (
-              <li key={item.id}>
-                <Button url={searchUrl}>{item.category}</Button>
-                <span className="helpers-counter">{`( ${item.helpersCount} )`}</span>
-              </li>
-            );
-          })
+          <Loader size={100} />
           :
-          <Loader size={100} /> }
-      </ul>
+          (
+            categories.length
+            ?
+            <ul>
+            { categories.map((item: TCategory) => {
+                const searchUrl = `${AppRoutes.SEARCH}?type=c&query=${item.category}`
+                return (
+                  <li key={item.id}>
+                    <Button url={searchUrl}>{item.category}</Button>
+                    <span className="helpers-counter">{`( ${item.helpersCount} )`}</span>
+                  </li>
+                );
+              })}
+            </ul>
+            :
+            <p className="categories__empty-msg">Не найдено ни одной категории</p>
+          )
+        }
+      </>
     </section>
   );
 }

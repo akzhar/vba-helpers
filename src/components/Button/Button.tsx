@@ -4,14 +4,16 @@ import { Link, useLocation } from 'react-router-dom';
 type TButtonProps = {
   children: React.ReactNode,
   clickHandler?: () => void,
-  url?: string
+  url?: string,
+  active?: boolean
 };
 
-const Button: React.FC<TButtonProps> = ({ children, clickHandler, url }) => {
+const Button: React.FC<TButtonProps> = ({ children, clickHandler, url, active = false }) => {
 
   const { pathname } = useLocation();
 
-  const isActive = Boolean(pathname === url)
+  const isUrl = Boolean(url);
+  const isActive = isUrl ? Boolean(pathname === url) : active
 
   return (
     <>
@@ -26,7 +28,12 @@ const Button: React.FC<TButtonProps> = ({ children, clickHandler, url }) => {
           {children}
         </Link>
         :
-        <button type="button" className="button" onClick={clickHandler}>
+        <button
+          type="button"
+          className={`button ${isActive ? 'button--active' : ''}`}
+          tabIndex={isActive ? -1 : 0}
+          onClick={clickHandler}
+        >
           {children}
         </button>
       }

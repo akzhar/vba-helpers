@@ -30,9 +30,6 @@ const reducerMessage = (state: TMessageState = initialMassageState, action: TAct
     case ActionTypes.SHOW_MESSAGE: {
       return {...state,  isVisible: true};
     }
-    case ActionTypes.HIDE_MESSAGE: {
-      return {...state,  isVisible: false};
-    }
     default:
       return {...state};
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import getPlural from '@utils/getPlural';
+import capitalize from '@utils/capitalize';
 
 import Button from '@components/Button';
 import Header from '@components/Header';
@@ -17,7 +18,7 @@ const SearchMethods: React.FC = () => (
     <ol>
       {searchTypes.map(type => (
         <li key={type}>
-          <Button url={`${AppRoutes.SEARCH}?type=${type}`}>{SearchTypeToHint[type]}</Button>
+          <Button url={`${AppRoutes.SEARCH}?type=${type}`}>{capitalize(SearchTypeToHint[type])}</Button>
         </li>
       ))}
     </ol>

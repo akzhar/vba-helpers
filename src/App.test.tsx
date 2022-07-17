@@ -125,6 +125,7 @@ const createRealStore = (state: TState): Store<TState> => {
     applyMiddleware(thunk)
   );
 }
+const realStore = createRealStore(initialState);
 
 function renderApp(url: string, store: Store<TState> | MockStoreEnhanced<unknown>) {
 
@@ -154,7 +155,7 @@ function renderApp(url: string, store: Store<TState> | MockStoreEnhanced<unknown
    test('Render Search page when user navigates to /search', async () => {
      const url = '/search';
      await act(() => {
-       renderApp(url, mockedStore);
+       renderApp(url, realStore);
      });
      expect(screen.getByRole('link', { current: true })).toHaveAttribute('href', url);
      expect(screen.getByText(category0.category)).toBeInTheDocument();
@@ -172,7 +173,6 @@ function renderApp(url: string, store: Store<TState> | MockStoreEnhanced<unknown
 
 async function search(searchType: string, searchQuery: string) {
   const url = '/search';
-  const realStore = createRealStore(initialState);
   await act(() => {
     renderApp(url, realStore);
   });
@@ -195,7 +195,7 @@ async function doSearchTest(searchType: string, searchQuery: string, spy: jest.S
   expect(spy).toBeCalledTimes(7);
   expect(state.search.params.type).toBe(searchType);
   expect(state.search.params.query).toBe(searchQuery);
-  expect(state.search.isLoading).toBe(false);
+  expect(state.helpers.isLoading).toBe(false);
   const helper = screen.getByTestId(`helper-${helper21.id}`);
   expect(helper).toBeInTheDocument();
 }

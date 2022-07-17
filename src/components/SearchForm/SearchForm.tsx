@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-onchange */
 import React, { useRef, useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import debounce from '@utils/debounce';
 import capitalize from '@utils/capitalize';
@@ -36,11 +36,12 @@ const SearchForm: React.FC = () => {
   const {search} = useLocation();
   const paramType = searchParams.get('type');
   const paramQuery = searchParams.get('query');
+
   const { type: storeType, query: storeQuery } = useSelector((state: TState) => state.search.params);
 
   const getValues = () => {
-    const type = selectRef.current?.value;
-    const query = inputRef.current?.value;
+    const type = selectRef.current?.value || '';
+    const query = inputRef.current?.value || '';
     return [type, query];
   }
 
@@ -59,10 +60,14 @@ const SearchForm: React.FC = () => {
       inputRef.current.value = query;
       inputRef.current.placeholder = capitalize(hint);
     }
+    updateSearchParams(type, query);
     replaceURL({ type, query});
     // Run search only if URL params comes from the URL (paste link)
     if(paramType && paramQuery) {
       runSearch();
+    }
+    return () => {
+      dispatch(ActionCreator.resetHelpers());
     }
   }
 
@@ -84,11 +89,15 @@ const SearchForm: React.FC = () => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  function updateSearchParams(type: string, query: string) {
+    dispatch(ActionCreator.setSearchParams({ type, query }));
+  }
+
   function runSearch() {
     const [type, query] = getValues();
     if(type && query) {
-      dispatch(ActionCreator.setSearchParams({ type, query }));
-      dispatch(ActionCreator.setSearchIsLoading({ flag: true }));
+      updateSearchParams(type, query);
+      dispatch(ActionCreator.loadHelpers());
     }
   }
 
@@ -98,18 +107,17 @@ const SearchForm: React.FC = () => {
   };
 
   const typeChangeHandler = (type?: string) => {
-    if(selectRef.current && inputRef.current) {
-      if(type) {
-        selectRef.current.value = type;
-      } else {
-        type = getValues()[0];
-      }
-      if(type) {
-        inputRef.current.placeholder = capitalize(SearchTypeToHint[type]);
-        inputRef.current.value = '';
-        inputRef.current.focus();
-        replaceURL({ type });
-      }
+    if(!type) {
+      type = getValues()[0];
+    }
+    if(type && selectRef.current && inputRef.current) {
+      const query = '';
+      selectRef.current.value = type;
+      inputRef.current.value = query;
+      inputRef.current.placeholder = capitalize(SearchTypeToHint[type]);
+      inputRef.current.focus();
+      updateSearchParams(type, query);
+      replaceURL({ type });
     }
   };
 
@@ -120,32 +128,28 @@ const SearchForm: React.FC = () => {
 
   const inputChangeHandler = (evt: React.FormEvent<HTMLInputElement>) => {
     evt.preventDefault();
+    let type = '';
     const [, query] = getValues();
     if(query) {
-      let newType = '';
       switch(query) {
-        case '!':
-          newType = SymbolToSearchType['!']; // search by title
+        case symbols[0]:
+          type = SymbolToSearchType[symbols[0]]; // ! - search by title
           break;
-        case '@':
-          newType = SymbolToSearchType['@']; // search by category
+        case symbols[1]:
+          type = SymbolToSearchType[symbols[1]]; // @ - search by category
           break;
-        case '#':
-          newType = SymbolToSearchType['#']; // search by keyword
+        case symbols[2]:
+          type = SymbolToSearchType[symbols[2]]; // # - search by keyword
           break;
-        case '$':
-          newType = SymbolToSearchType['$']; // search by name
+        case symbols[3]:
+          type = SymbolToSearchType[symbols[3]]; // $ - search by name
           break;
         default:
           replaceURL({ query });
           break;
       }
-      if(newType) {
-        replaceURL({ type: newType });
-        if(selectRef.current && inputRef.current) {
-          selectRef.current.value = newType;
-          inputRef.current.value = '';
-        }
+      if(type) {
+        typeChangeHandler(type);
       }
     } else {
       replaceURL({ query: ''});
@@ -165,7 +169,7 @@ const SearchForm: React.FC = () => {
           ref={selectRef}
           onChange={selectChangeHandler}
         >
-          { searchTypes.map((type, i) => (<option key={i} value={type}>{type.toUpperCase()}</option>)) }
+          { searchTypes.map((type, i) => (<option key={i} value={type}>{type}</option>)) }
         </select>
         <input
           data-testid="search-input"
@@ -177,13 +181,12 @@ const SearchForm: React.FC = () => {
         />
       </fieldset>
       <ul className="search__hints">
-        {symbols.map((symbol: string) => {
-          const type = SymbolToSearchType[symbol];
+        {searchTypes.map((type: string) => {
           const hint = SearchTypeToHint[type];
           return (
-          <li key={symbol}>
-            <Button clickHandler={() => typeChangeHandler(type)}>
-              <b>{symbol}</b> - {hint}
+          <li key={type}>
+            <Button clickHandler={() => typeChangeHandler(type)} active={storeType === type}>
+              {capitalize(hint)} ( <b>{type}</b> )
             </Button>
           </li>
         )})}

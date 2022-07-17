@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import Api, { THelper } from '@services/Api';
-import getPlural from '@utils/getPlural';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { THelper } from '@services/Api';
 
 import Loader from '@components/Loader';
 import HelperItem from '@components/HelperItem';
@@ -10,76 +9,15 @@ import { TState } from '@store/reducer';
 
 const HelperList: React.FC = () => {
 
-  const api = new Api();
-  const [helpers, setHelpers] = useState<THelper[]>([]);
-
-  const { params: { type: searchType, query: searchQuery }, isLoading } = useSelector(
-    (state: TState) => state.search,
-    shallowEqual
-  );
+  const isLoading = useSelector((state: TState) => state.helpers.isLoading);
+  const helpers = useSelector((state: TState) => state.helpers.items);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-
-    let getHelpers: (query: string) => Promise<THelper[]>;
-
-    // Select API method by search type
-    switch(searchType) {
-      case 't':
-        getHelpers = api.getHelpersByTitle;
-        break;
-      case 'c':
-        getHelpers = api.getHelpersByCategory;
-        break;
-      case 'k':
-        getHelpers = api.getHelpersByKeyword;
-        break;
-      case 'n':
-        getHelpers = api.getHelpersByName;
-        break;
-      case 'i':
-        getHelpers = api.getHelpersById;
-        break;
-      default:
-        break;
+    if(!isLoading) {
+      dispatch(ActionCreator.showMessage());
     }
-
-    const fetchHelpers = async () => await getHelpers(searchQuery);
-
-    if(isLoading && searchType && searchQuery) {
-
-      fetchHelpers()
-        .then((helpers: THelper[]) => {
-
-          if(!Array.isArray(helpers)) {
-            if(Object.prototype.hasOwnProperty.call(helpers, 'id')) {
-              helpers = [helpers];
-            } else {
-              helpers = [];
-            }
-          }
-
-          setHelpers(helpers);
-
-          if(helpers.length) {
-            const verb = getPlural(helpers.length, 'Найден', 'Найдено', 'Найдено');
-            const noun = getPlural(helpers.length, 'хелпер', 'хелпера', 'хелперов');
-            dispatch(ActionCreator.setInfoMessage({ label: '😊', text: `${verb} ${helpers.length} ${noun}` }));
-          } else {
-            dispatch(ActionCreator.setWarningMessage({ label: '😭', text: 'Хелперы не найдены' }));
-          }
-
-        })
-        .catch((err) => {
-          console.error('Fetch helpers error: ', err);
-          dispatch(ActionCreator.setWarningMessage({ label: '😭', text: 'Ошибка получения хелперов' }));
-        })
-        .finally(() => {
-          dispatch(ActionCreator.setSearchIsLoading({ flag: false }));
-        });
-    }
-
   }, [isLoading]);
 
   return (
