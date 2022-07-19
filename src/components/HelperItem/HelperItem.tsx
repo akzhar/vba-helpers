@@ -42,7 +42,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
             </a>
             <a href={`${HelperLinks.RAW}/${helper.file}`} target="_blank" rel="noreferrer">
               <svg width="12" height="12"><use xlinkHref="#script" /></svg>
-              <span>Файл .bas</span>
+              <span>{`Файл ${helper.file.slice(helper.file.indexOf('.'))}`}</span>
             </a>
           </div>
         </div>
