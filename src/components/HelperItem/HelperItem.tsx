@@ -38,16 +38,16 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
           <div className="helper__links">
             <a href={`${HelperLinks.VIEW}/${helper.file}`} target="_blank" rel="noreferrer">
               <svg width="12" height="12"><use xlinkHref="#eye" /></svg>
-              <span>Смотреть код</span>
+              <span>View code</span>
             </a>
             <a href={`${HelperLinks.RAW}/${helper.file}`} target="_blank" rel="noreferrer">
               <svg width="12" height="12"><use xlinkHref="#script" /></svg>
-              <span>{`Файл ${helper.file.slice(helper.file.indexOf('.'))}`}</span>
+              <span>{`File ${helper.file.slice(helper.file.indexOf('.'))}`}</span>
             </a>
           </div>
         </div>
         <div className="helper__column">
-          <h3 className="helper__header">Описание</h3>
+          <h3 className="helper__header">Description</h3>
           <p
             className="helper__description"
             dangerouslySetInnerHTML={
@@ -59,7 +59,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
         </div>
       </div>
       <div className="helper__example">
-        <h3 className="helper__header">Пример использования</h3>
+        <h3 className="helper__header">Usage example</h3>
         {
           helper.usage.length
           ?
@@ -79,7 +79,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
             </div>
           </pre>
           :
-          'Нет'
+          'N/a'
         }
       </div>
     </details>

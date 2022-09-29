@@ -24,7 +24,7 @@ const Categories: React.FC = () => {
 
   return (
     <section className="categories">
-      <Header id="categories" text="Категории хелперов" />
+      <Header id="categories" text="Helpers categories" />
         <>
         { isLoading
           ?
@@ -45,7 +45,7 @@ const Categories: React.FC = () => {
               })}
             </ul>
             :
-            <p className="categories__empty-msg">Не найдено ни одной категории</p>
+            <p className="categories__empty-msg">Sorry, no category was found</p>
           )
         }
       </>

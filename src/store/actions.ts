@@ -121,17 +121,17 @@ const ActionCreator = {
             dispatch({ type: ActionTypes.SET_HELPERS_ITEMS, payload: helpers });
 
             if(helpers.length) {
-              const verb = getPlural(helpers.length, 'Найден', 'Найдено', 'Найдено');
-              const noun = getPlural(helpers.length, 'хелпер', 'хелпера', 'хелперов');
-              dispatch(ActionCreator.setInfoMessage({ label: '😊', text: `${verb} ${helpers.length} ${noun}` }));
+              const noun = getPlural(helpers.length, 'helper', 'helpers', 'helpers');
+              dispatch(ActionCreator.setInfoMessage({ label: '😊', text: `${helpers.length} ${noun} found` }));
             } else {
-              dispatch(ActionCreator.setWarnMessage({ label: '😭', text: 'Хелперы не найдены' }));
+              dispatch(ActionCreator.setWarnMessage({ label: '😭', text: 'No helper was found' }));
             }
 
           })
           .catch((err) => {
-            console.error('Ошибка получения хелперов: ', err);
-            dispatch(ActionCreator.setWarnMessage({ label: '😭', text: 'Ошибка получения хелперов' }));
+            const errMessage = 'Error when getting helpers';
+            console.error(errMessage, err);
+            dispatch(ActionCreator.setWarnMessage({ label: '😭', text: errMessage }));
           })
           .finally(() => {
             dispatch(ActionCreator.setHelpersIsLoading({ flag: false }));

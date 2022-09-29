@@ -13,7 +13,7 @@ const SearchMethods: React.FC = () => (
   <section className="search-methods">
     <Header
       id="search-methods"
-      text={`${searchTypes.length} ${getPlural(searchTypes.length, 'способ', 'способа', 'способов')} найти хелпер`}
+      text={`${searchTypes.length} ${getPlural(searchTypes.length, 'way', 'ways', 'ways')} to search helpers`}
     />
     <ol>
       {searchTypes.map(type => (

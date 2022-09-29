@@ -1,28 +1,29 @@
-# vba helpers
+# VBA helpers
 
-## 1. Описание
-`vba helpers` - это небольшая коллекция кусочков [VBA](https://ru.wikipedia.org/wiki/Visual_Basic_for_Applications) кода (хелперов) в формате `.bas` файлов.
+## 1. Description
+This is a free collection of small [VBA](https://en.wikipedia.org/wiki/Visual_Basic_for_Applications) code pieces indended to help solve common Excel programming cases.
 
-`helper` - вспомогательная процедура / функция.
+`helper` - utillity procedure / function.
 
-Хелперы хранятся в [API репозитории](https://github.com/akzhar/vba-helpers-api/tree/main/data/code).
+All the helpers stored as `.bas` files [here](https://github.com/akzhar/vba-helpers-api/tree/main/data).
 
-## 2. Ссылки
-- [Опубликованное приложение](https://vba-helpers.herokuapp.com)
-- [API репозиторий](https://github.com/akzhar/vba-helpers-api)
+## 2. Links
+- [VBA helpers application](https://vba-helpers.herokuapp.com)
+- [VBA helpers API repository](https://github.com/akzhar/vba-helpers-api)
 
-## 3. Описание функционала
-Веб интерфейс позволяей найти и применить нужный хелпер в своем макросе.
+## 3. Functionality
+App allows you to easily find the helper what you need.
 
-5 способов найти хелпер:
-- [искать по заголовку хелпера](https://vba-helpers.herokuapp.com/search?type=t)
-- [искать по категории хелпера](https://vba-helpers.herokuapp.com/search?type=k)
-- [искать по ключевой фразе](https://vba-helpers.herokuapp.com/search?type=k)
-- [искать по имени хелпера](https://vba-helpers.herokuapp.com/search?type=n)
-- [искать по ID хелпера](https://vba-helpers.herokuapp.com/search?type=i)
+5 ways to search helpers:
 
-## 4. Установка зависимостей
-Находясь в корневой папке проекта, выполните команду `npm i`
+- [search by title](https://vba-helpers.herokuapp.com/search?type=t)
+- [search by category](https://vba-helpers.herokuapp.com/search?type=k)
+- [search by keywords](https://vba-helpers.herokuapp.com/search?type=k)
+- [search by name](https://vba-helpers.herokuapp.com/search?type=n)
+- [search by ID](https://vba-helpers.herokuapp.com/search?type=i)
 
-## 5. Запуск приложения в dev режиме
-Находясь в корневой папке проекта, выполните команду `npm run start`
+## 4. Install dependencies
+`git clone repo_url` → `cd ./repo-folder` → `npm install`
+
+## 5. Build and run the app
+`cd ./repo-folder` → `npm run start`

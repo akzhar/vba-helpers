@@ -6,8 +6,8 @@ export const AppRoutes: TLinks = {
 };
 
 export const AboutLinks: TLinks = {
-  WIKI_VBA: 'https://ru.wikipedia.org/wiki/Visual_Basic_for_Applications',
-  GIT_REPO: 'https://github.com/akzhar/vba-helpers-api/tree/main/data/code'
+  WIKI_VBA: 'https://en.wikipedia.org/wiki/Visual_Basic_for_Applications',
+  GIT_REPO: 'https://github.com/akzhar/vba-helpers-api/tree/main/data'
 };
 
 export const ContactLinks: TLinks = {

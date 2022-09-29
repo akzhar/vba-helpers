@@ -5,32 +5,32 @@ import { AboutLinks } from '@consts/const';
 
 const About: React.FC = () => (
   <section className="about">
-    <Header id="about" text="Что это такое?"/>
+    <Header id="about" text="What is it?"/>
     <p>
-      При написании макросов для <b>Excel</b> часто
-      возникает потребность выделить часть кода в отдельные
-      функции / процедуры с целью последующего переиспользования
-      в других местах. Например, код для сортировки /
-      фильтрации массивов разумно вынести в отдельные ф-ции /
-      процедуры с целью последующего переиспользования в других
-      макросах. Подобный подход разгружает основные модули от
-      избыточных конструкций, упрощает отладку и поддержку кода.
-      Такие кусочки <a href={AboutLinks.WIKI_VBA} target="_blank" rel="noreferrer">VBA</a> кода
-      со временем копятся, возникакет потребность их где-то хранить.
+      When writing macros
+      for <b>Excel</b> using <a href={AboutLinks.WIKI_VBA} target="_blank" rel="noreferrer">VBA</a> often
+      there is a need to separate a part of the code into separate
+      functions/procedures for further reuse
+      in other places. For example, it is reasonable to put the code for sorting/
+      filtering arrays into separate functions/
+      procedures for further reuse in other
+      macros. This approach simplifies debugging and code support.
+      Over time there is a need to store such pieces of code somewhere.
     </p>
     <p>
-      <b>vba helpers</b> - это небольшая коллекция таких кусочков
-      кода (хелперов) в формате <b>.bas</b> файлов. Хелперы хранятся
-      в <a href={AboutLinks.GIT_REPO} target="_blank" rel="noreferrer">git репозитории</a>,
-      а веб интерфейс позволяет найти и применить нужный хелпер в своем макросе.
+      <b>vba helpers</b> - is a free collection of small code pieces
+      indended to help solve common Excel programming cases.
+      All the helpers stored as <b>.bas</b> files
+      in the <a href={AboutLinks.GIT_REPO} target="_blank" rel="noreferrer">git repository</a> and
+      this site allows you to easily find the helper what you need.
     </p>
     <dl>
       <dt>helper *</dt>
-      <dd>вспомогательная процедура / функция</dd>
+      <dd>utillity procedure / function</dd>
     </dl>
     <p>
-      Каждый хелпер выполняет определенную узкую задачу.
-      Все хелперы разделены на категории.
+      Each helper performs a specific task.
+      All helpers are divided into categories.
     </p>
   </section>
 );

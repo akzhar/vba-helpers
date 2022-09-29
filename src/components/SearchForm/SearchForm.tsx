@@ -10,11 +10,11 @@ import ActionCreator from '@store/actions';
 import { TState } from '@store/reducer';
 
 export const SearchTypeToHint: { [key: string]: string } =  {
-  t: 'искать по заголовку хелпера',
-  c: 'искать по категории хелпера',
-  k: 'искать по ключевой фразе',
-  n: 'искать по имени хелпера',
-  i: 'искать по ID хелпера'
+  t: 'search by title',
+  c: 'search by category',
+  k: 'search by keywords',
+  n: 'search by name',
+  i: 'search by id'
 };
 
 export const INITIAL_SEARCH_TYPE = 'k';
@@ -180,7 +180,7 @@ const SearchForm: React.FC = () => {
           onChange={dbInputChangeHandler}
         />
       </fieldset>
-      <ul className="search__hints">
+      <ul className="search__methods">
         {searchTypes.map((type: string) => {
           const hint = SearchTypeToHint[type];
           return (
@@ -191,7 +191,7 @@ const SearchForm: React.FC = () => {
           </li>
         )})}
         <li>
-          <button data-testid="search-submit" type="submit" className="button"><b>Enter</b> - искать</button>
+          <button data-testid="search-submit" type="submit" className="button"><b>Enter</b> - search</button>
         </li>
       </ul>
     </form>

@@ -8,10 +8,10 @@ import TelegramLink from './TelegramLink';
 
 const Contacts: React.FC = () => (
   <section className="contacts">
-    <Header id="contacts" text="Контакты" />
+    <Header id="contacts" text="Contacts" />
     <p>
-      Баги и замечания приветствуются на <IssuesLink />.<br/>
-      По остальным вопросам доступен в Telegram <TelegramLink />
+      Log your ideas and issues on <IssuesLink />.<br/>
+      Feel free to touch me in <TelegramLink />.
     </p>
     <ul>
       <li>
