@@ -1,5 +1,9 @@
 # VBA helpers
 
+## Demo
+
+<img src="https://raw.githubusercontent.com/akzhar/vba-helpers/main/demo.gif" alt="demo" title="demo" width="100%"/>
+
 ## 1. Description
 This is a free collection of small [VBA](https://en.wikipedia.org/wiki/Visual_Basic_for_Applications) code pieces indended to help solve common Excel programming cases.
 
