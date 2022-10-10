@@ -16,6 +16,7 @@ export const ContactLinks: TLinks = {
 };
 
 export const HelperLinks: TLinks = {
-  VIEW: 'https://github.com/akzhar/vba-helpers-api/blob/main/data/code',
-  RAW: 'https://github.com/akzhar/vba-helpers-api/raw/main/data/code'
+  CODE: 'https://github.com/akzhar/vba-helpers-api/blob/main/data/code',
+  FILE: 'https://github.com/akzhar/vba-helpers-api/raw/main/data/code',
+  DEMO: 'https://github.com/akzhar/vba-helpers-api/raw/main/data/demo'
 };

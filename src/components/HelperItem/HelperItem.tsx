@@ -36,11 +36,11 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
             }
           </ul>
           <div className="helper__links">
-            <a href={`${HelperLinks.VIEW}/${helper.file}`} target="_blank" rel="noreferrer">
+            <a href={`${HelperLinks.CODE}/${helper.file}`} target="_blank" rel="noreferrer">
               <svg width="12" height="12"><use xlinkHref="#eye" /></svg>
               <span>View code</span>
             </a>
-            <a href={`${HelperLinks.RAW}/${helper.file}`} target="_blank" rel="noreferrer">
+            <a href={`${HelperLinks.FILE}/${helper.file}`} target="_blank" rel="noreferrer">
               <svg width="12" height="12"><use xlinkHref="#script" /></svg>
               <span>{`File ${helper.file.slice(helper.file.indexOf('.'))}`}</span>
             </a>
@@ -56,7 +56,26 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
               {__html: `<p>${helper.title}</p>${helper.description ? window.marked.parse(helper.description) : ''}`}
             }>
           </p>
+          { helper.demo &&
+            <>
+              <h3 className="helper__header">Demo</h3>
+              <a className="helper__demo" href={`${HelperLinks.DEMO}/${helper.demo}`} target="_blank" rel="noreferrer">
+                <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" title="Open the demo" />
+                <svg width="20" height="20">
+                  <use xlinkHref="#zoom" />
+                </svg>
+              </a>
+            </>
+          }
         </div>
+        {/* { helper.demo &&
+          <div className="helper__column">
+            <h3 className="helper__header">Demo</h3>
+            <a href={`${HelperLinks.DEMO}/${helper.demo}`} target="_blank" rel="noreferrer">
+              <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" title="demo" />
+            </a>
+          </div>
+        } */}
       </div>
       <div className="helper__example">
         <h3 className="helper__header">Usage example</h3>

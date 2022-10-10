@@ -13,7 +13,8 @@ export type THelper = {
   _keywords: string,
   description: string,
   usage: string,
-  file: string
+  file: string,
+  demo: string
 }
 
 class Api {
