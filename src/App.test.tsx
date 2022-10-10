@@ -15,12 +15,12 @@ import reducer, { TState, initialState } from '@store/reducer';
 
 import App from './App';
 
-const HEADER_CATEGORIES = 'Категории хелперов';
-const HEADER_ABOUT = 'Что это такое?';
+const HEADER_CATEGORIES = 'Helpers categories';
+const HEADER_ABOUT = 'What is it?';
 
 const category0: TCategory = {
   id: '0',
-  category: 'Массивы',
+  category: 'Arrays',
   helpersCount: 13,
   keywords: [
     'получить длину массива',
@@ -36,7 +36,7 @@ const category0: TCategory = {
 
 const category1: TCategory = {
   id: '1',
-  category: 'Конвертация',
+  category: 'Transformation',
   helpersCount: 8,
   keywords: [
     'конвертировать диапазон в массив',
@@ -53,32 +53,34 @@ const category1: TCategory = {
 const helper3: THelper = {
   id: '3',
   category: [
-    'Конвертация',
-    'Массивы'
+    'Transformation',
+    'Arrays'
   ],
   name: 'Rng2Array',
-  title: 'Ф-ция возвращает 1 мерный массив, заполненный значениями из диапазона',
-  description: 'Все значения приводятся к строке',
+  title: 'Converts range to array',
+  description: 'Returns 1-dim array contains all values from passed range.',
   _keywords: 'конвертировать диапазон в массив\nконвертация диапазона в массив\nconvert range to array',
   // eslint-disable-next-line max-len
   usage: 'Sub Example()\n    Dim ws As Worksheet: Set ws = ThisWorkbook.Sheets(1)\n    Dim rng As Range: Set rng = ws.Range("A1:A10")\n    Dim arr() As String: arr = Rng2Array(rng)\n    \' ... выполняем действия с массивом\n    ws.Range("A1").Resize(Ubound(arr) + 1, 1) = Application.Transponse(arr)\nEnd Sub',
-  file: '3.bas'
+  file: '3.bas',
+  demo: ''
 };
 
 const helper21: THelper = {
   id: '21',
   category: [
-    'Конвертация',
-    'Работа с датой и временем'
+    'Transformation',
+    'Date and time'
   ],
   name: 'UnixTime2ExcelDate',
-  title: 'Ф-ция конвертирует Unix 13-digit time string в Excel дату',
-  description: '',
+  title: 'Converts Unix 13-digit timestamp to date',
+  description: 'Returns date',
   // eslint-disable-next-line max-len
   _keywords: 'конвертировать unix time в дату\nконвертация unix time в дату\nконвертировать юникс время в дату\nконвертация юникс время в дату\nconvert unix time to date',
   // eslint-disable-next-line max-len
   usage: 'Sub Example()\n    Dim d As Date: d = UnixTime2ExcelDate("1443852054000")\n    Debug.Print (d) \' 03.10.2015 6:00:54\nEnd Sub',
-  file: '21.bas'
+  file: '21.bas',
+  demo: '21.gif'
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -190,9 +192,12 @@ async function search(searchType: string, searchQuery: string) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function doSearchTest(searchType: string, searchQuery: string, spy: jest.SpyInstance<Dispatch<Action<any>>, []>) {
   const state = await search(searchType, searchQuery);
-  // 1 SET_SEARCH_PARAMS type, 2 SET_SEARCH_PARAMS query, 3 SET_SEARCH_LOADING true
-  // 4 SET_SEARCH_LOADING false, 5 SET_INFO_MESSAGE, 6 SHOW_MESSAGE, 7 RESET_MESSAGE
-  expect(spy).toBeCalledTimes(7);
+  // 1 SET_SEARCH_PARAMS type, 2 SET_SEARCH_PARAMS query
+  // 3 SET_SEARCH_LOADING true
+  // 4 SET_HELPERS, 5 SET_INFO_MESSAGE
+  // 5 SET_SEARCH_LOADING false
+  // 7 SHOW_MESSAGE, 8 RESET_MESSAGE
+  expect(spy).toBeCalledTimes(8);
   expect(state.search.params.type).toBe(searchType);
   expect(state.search.params.query).toBe(searchQuery);
   expect(state.helpers.isLoading).toBe(false);
