@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { THelper } from '@services/Api';
 
 import Anchor from '@components/Anchor';
+import Tooltip from '@components/Tooltip';
 import { AppRoutes, HelperLinks } from '@consts/const';
 
 type THelperItemProps = {
@@ -26,8 +27,13 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
   return (
     <details className="helper" open={isOpen}>
       <summary>
+        <Anchor url={`${AppRoutes.SEARCH}?type=i&query=${helper.id}`} title="Link to the helper"/>
         <span className="helper__name">{helper.name}</span>
-        <Anchor url={`${AppRoutes.SEARCH}?type=i&query=${helper.id}`} aria-label="Link to the helper"/>
+        <div className="helper__help">
+          <Tooltip message={helper.title} position="left">
+            <svg width="18" height="18"><use xlinkHref="#question" /></svg>
+          </Tooltip>
+        </div>
       </summary>
       <div className="helper__details">
         <div className="helper__column">
@@ -62,7 +68,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
             <>
               <h3 className="helper__header">How it works?</h3>
               <a className="helper__demo" href={`${HelperLinks.DEMO}/${helper.demo}`} target="_blank" rel="noreferrer">
-                <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" title="Open the demo" />
+                <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" />
                 <svg width="20" height="20">
                   <use xlinkHref="#zoom" />
                 </svg>

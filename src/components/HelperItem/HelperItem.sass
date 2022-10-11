@@ -1,22 +1,39 @@
 .helper
 
+  &__help
+
+    & svg
+      fill: $color-green_dark
+
   & summary
     display: flex
     padding: 20px
 
     &:hover
       cursor: pointer
-      opacity: 0.6
 
-    & .anchor
+    & .anchor,
+    & .helper__help
+      visibility: hidden
+
+    & .helper__help
       margin-left: auto
 
+  & summary:hover .anchor,
+  &:not([open]) summary:hover .helper__help,
+  &[open] summary .anchor
+    visibility: visible
+
   &__name
+    margin-left: 10px
     color: $color-grey
     font-size: 18px
 
     @media(min-width: $width-mobile)
       font-size: 22px
+
+  &[open] .tooltip
+    pointer-events: none
 
   &__category
     margin: 0
@@ -97,7 +114,7 @@
       margin-bottom: 6px
 
       &:hover
-        opacity: 0.6
+        opacity: 0.8
 
       & svg
         margin-right: 12px
@@ -115,6 +132,13 @@
     @media(min-width: $width-mobile)
       font-size: 18px
 
+  &__description code,
+  &__example pre
+      font-size: 8px
+
+      @media(min-width: $width-mobile)
+        font-size: 12px
+
   &__example
 
     & pre
@@ -122,10 +146,6 @@
       margin: 0
       display: flex
       background-color: $color-background
-      font-size: 8px
-
-      @media(min-width: $width-mobile)
-        font-size: 12px
 
       & .helper__code-lines
         padding: 10px
@@ -155,8 +175,11 @@
     display: block
     width: 100%
 
+    &:hover
+      cursor: zoom-in
+
     @media(min-width: $width-mobile)
-      width: 60%
+      width: 80%
 
     & img
       opacity: 1

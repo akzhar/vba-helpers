@@ -1,0 +1,51 @@
+.tooltip
+  position: relative
+  cursor: help
+
+  & .tooltip__element:hover
+    text-decoration: underline $color_green_dark
+    opacity: 0.8
+
+  &:hover .tooltip__popup
+    display: block
+
+  &__popup
+    display: none
+    position: absolute
+    pointer-events: none
+    background-color: $color-paper
+    padding: 10px 12px
+    border-radius: 3px
+    transition: all .5s cubic-bezier(.4, 0, .2, 1)
+    color: $color-grey-dark
+    font-style: italic
+    z-index: 1
+    +shadow()
+    width: 150px
+    white-space: normal
+    font-size: 10px
+
+    @media(min-width: $width-mobile)
+      width: auto
+      white-space: nowrap
+      font-size: 12px
+
+  &__popup--top
+    bottom: 100%
+    left: 0
+    transform: translateY(-8px)
+
+  &__popup--right
+    top: 50%
+    left: 100%
+    transform: translate(16px, -50%)
+
+  &__popup--bottom
+    top: 100%
+    left: 0
+    transform: translateY(8px)
+
+  &__popup--left
+    top: 50%
+    right: 100%
+    transform: translate(-16px, -50%)
