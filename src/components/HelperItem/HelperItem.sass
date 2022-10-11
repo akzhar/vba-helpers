@@ -128,18 +128,27 @@
         font-size: 12px
 
       & .helper__code-lines
-        padding: 16px
+        padding: 10px
         display: flex
         flex-direction: column
         color: $color-green-dark
         font-weight: 600
         text-align: center
 
+        @media(min-width: $width-mobile)
+          padding: 16px
+
       & code
         display: block
         width: 96%
-        padding: 16px 8px
+        padding: 10px 8px
         overflow: auto
+
+        @media(min-width: $width-mobile)
+          padding: 16px 8px
+
+      & code.hljs
+        background: none
 
   &__demo
     position: relative
