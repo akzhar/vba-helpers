@@ -8,11 +8,14 @@ import HelperList from '@components/HelperList';
 const SearchPage: React.FC = () => (
   <>
     <Helmet>
-      <meta name="description" content="VBA helpers - поиск хелперов для написания макросов"/>
-      <meta name="keywords" content="VBA, helper, Excel, macros, script, search"/>
-      <title>search - vba helpers</title>
+      <meta
+        name="description"
+        content="Search VBA helpers by title, category, keywords, name and id"
+      />
+      <meta name="keywords" content="search, vba, helper, excel, macros, script"/>
+      <title>Search - VBA helpers</title>
     </Helmet>
-    <h1 className="visually-hidden">Поиск хелперов</h1>
+    <h1 className="visually-hidden">Search helpers</h1>
     <SearchForm />
     <HelperList />
     <Categories />

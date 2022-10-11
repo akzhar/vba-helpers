@@ -7,10 +7,13 @@
     display: inline
     position: relative
     margin: 0
-    font-size: 26px
     font-weight: 400
     color: $color-grey
     text-align: center
+    font-size: 20px
+
+    @media(min-width: $width-mobile)
+      font-size: 26px
 
     & .anchor
       display: none

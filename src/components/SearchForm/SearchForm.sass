@@ -18,7 +18,7 @@
     border: none
 
     @media(min-width: $width-mobile)
-      width: 86%
+      width: 74%
 
   &__type
     display: none
@@ -27,9 +27,9 @@
     border: none
     color: $color-grey-dark
     font-family: 'RobertoSans-Regular', Tahoma, sans-serif
-    font-size: 12px
-    font-weight: 600
     background-color: inherit
+    font-weight: 600
+    font-size: 12px
 
     &:hover
       cursor: pointer
@@ -46,10 +46,11 @@
     background-color: inherit
     border-radius: inherit
     font-family: 'RobertoSans-Regular', Tahoma, sans-serif
-    font-size: 20px
     text-align: center
+    font-size: 16px
 
     @media(min-width: $width-mobile)
+      font-size: 18px
       text-align: left
 
     &::placeholder
@@ -57,27 +58,25 @@
       color: $color-grey-light
 
   &__methods
-    min-width: 160px
     margin: 0
     padding: 10px 10px
     color: $color-grey
     list-style: none
 
     @media(min-width: $width-mobile)
-      width: 16%
+      width: 26%
       padding: 10px 20px
 
     & li
+      margin-bottom: 2px
       display: flex
       justify-content: center
-      margin-bottom: 2px
+
+      @media(min-width: $width-mobile)
+        justify-content: end
 
       & b
         color: $color-grey-dark
 
       & .button
         padding: 0 2px 2px 2px
-        font-size: 16px
-
-        @media(min-width: $width-mobile)
-          font-size: 12px

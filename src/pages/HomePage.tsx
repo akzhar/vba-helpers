@@ -8,11 +8,14 @@ import Contacts from '@components/Contacts';
 const HomePage: React.FC = () => (
   <>
     <Helmet>
-      <meta name="description" content="VBA helpers - коллекция функций / процедур (хелперов) для написания макросов"/>
-      <meta name="keywords" content="VBA, helper, Excel, macros, script, collection, function, procedure"/>
-      <title>home - vba helpers</title>
+      <meta
+        name="description"
+        content="A free collection of small VBA code pieces indended to help solve common Excel programming cases"
+      />
+      <meta name="keywords" content="vba, helper, utility, function, procedure, macros, script, collection, excel"/>
+      <title>Home - VBA helpers</title>
     </Helmet>
-    <h1 className="visually-hidden">Домашняя страница</h1>
+    <h1 className="visually-hidden">Home page</h1>
     <div className="home">
       <div className="home__column">
         <About/>

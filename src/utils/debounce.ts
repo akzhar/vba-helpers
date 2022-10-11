@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const DEBOUNCE_INTERVAL = 300; // ms
 
-const debounce = (cb: (...parameters: any[]) => void) => {
+const debounce = (cb: (...parameters: any[]) => void, interval: number) => {
   let lastTimeout: number | null = null;
 
   return function (...arg: any[]) {
@@ -11,7 +10,7 @@ const debounce = (cb: (...parameters: any[]) => void) => {
     }
     lastTimeout = window.setTimeout(() => {
       cb(...parameters);
-    }, DEBOUNCE_INTERVAL);
+    }, interval);
   };
 };
 

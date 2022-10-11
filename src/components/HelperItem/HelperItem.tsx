@@ -6,20 +6,21 @@ import { AppRoutes, HelperLinks } from '@consts/const';
 
 type THelperItemProps = {
   helper: THelper,
-  open: boolean
+  isOpen: boolean
 };
 
-const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
+const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
 
   const codeLinesCount = (helper.usage.match(/\n/g)||[]).length + 1;
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore: Property 'hljs' does not exist on type 'Window & typeof globalThis'
-    const hljs = window.hljs;
-    // https://github.com/dullin/highlightjs-vba does paste html in code
-    hljs.configure({ ignoreUnescapedHTML: true, languages:['xml'] });
-    hljs.highlightAll();
+    try {
+      const hljs = window.hljs;
+      // https://github.com/dullin/highlightjs-vba does paste html in code
+      hljs.configure({ ignoreUnescapedHTML: true, languages:['xml'] });
+      hljs.highlightAll();
+    // eslint-disable-next-line no-empty
+    } catch(e) {}
   }, []);
 
   return (
@@ -47,18 +48,19 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
           </div>
         </div>
         <div className="helper__column">
-          <h3 className="helper__header">Description</h3>
+          <h3 className="helper__header">What is it?</h3>
           <p
             className="helper__description"
             dangerouslySetInnerHTML={
-              /*eslint-disable-next-line @typescript-eslint/ban-ts-comment*/
-              /*@ts-ignore: Property 'marked' does not exist on type 'Window & typeof globalThis'*/
-              {__html: `<p>${helper.title}</p>${helper.description ? window.marked.parse(helper.description) : ''}`}
+              {__html: `
+                <p>${helper.title}</p>
+                ${helper.description && (window.marked ? window.marked.parse(helper.description) : helper.description)}
+              `}
             }>
           </p>
           { helper.demo &&
             <>
-              <h3 className="helper__header">Demo</h3>
+              <h3 className="helper__header">How it works?</h3>
               <a className="helper__demo" href={`${HelperLinks.DEMO}/${helper.demo}`} target="_blank" rel="noreferrer">
                 <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" title="Open the demo" />
                 <svg width="20" height="20">
@@ -68,17 +70,9 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, open: isOpen}) => {
             </>
           }
         </div>
-        {/* { helper.demo &&
-          <div className="helper__column">
-            <h3 className="helper__header">Demo</h3>
-            <a href={`${HelperLinks.DEMO}/${helper.demo}`} target="_blank" rel="noreferrer">
-              <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" title="demo" />
-            </a>
-          </div>
-        } */}
       </div>
       <div className="helper__example">
-        <h3 className="helper__header">Usage example</h3>
+        <h3 className="helper__header">How to use it?</h3>
         {
           helper.usage.length
           ?

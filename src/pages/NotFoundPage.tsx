@@ -4,12 +4,15 @@ import { Helmet } from 'react-helmet';
 const NotFoundPage: React.FC = () => (
   <>
     <Helmet>
-      <meta name="description" content="VBA helpers"/>
-      <meta name="keywords" content="VBA, helper, wrong address, not found"/>
-      <title>wrong address - vba helpers</title>
+      <meta
+        name="description"
+        content="Not found page"
+      />
+      <meta name="keywords" content="wrong address, not found"/>
+      <title>404 - VBA helpers</title>
     </Helmet>
-    <h1 className="visually-hidden">Страница 404</h1>
-    <p style={{ textAlign: 'center'}}>Такой страницы не найдено...</p>
+    <h1 className="visually-hidden">Page 404</h1>
+    <p style={{ textAlign: 'center'}}>No such page was found...</p>
   </>
 );
 

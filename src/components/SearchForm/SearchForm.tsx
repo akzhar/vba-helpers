@@ -2,19 +2,29 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import debounce from '@utils/debounce';
+import throttle from '@utils/throttle';
 import capitalize from '@utils/capitalize';
 
 import Button from '@components/Button';
 import ActionCreator from '@store/actions';
 import { TState } from '@store/reducer';
 
+export const SearchTypeToField: { [key: string]: string } =  {
+  t: 'title',
+  c: 'category',
+  k: 'keywords',
+  n: 'name',
+  i: 'id'
+};
+
 export const SearchTypeToHint: { [key: string]: string } =  {
-  t: 'search by title',
-  c: 'search by category',
-  k: 'search by keywords',
-  n: 'search by name',
-  i: 'search by id'
+  t: `search by ${SearchTypeToField['t']}`,
+  c: `search by ${SearchTypeToField['c']}`,
+  k: `search by ${SearchTypeToField['k']}`,
+  n: `search by ${SearchTypeToField['n']}`,
+  i: `search by ${SearchTypeToField['i']}`
 };
 
 export const INITIAL_SEARCH_TYPE = 'k';
@@ -24,7 +34,8 @@ const SymbolToSearchType: { [key: string]: string } =  {
   '@': 'c',
   '#': 'k',
   // eslint-disable-next-line quote-props
-  '$': 'n'
+  '$': 'n',
+  '%': 'i'
 };
 
 const searchTypes = Object.keys(SearchTypeToHint);
@@ -89,21 +100,16 @@ const SearchForm: React.FC = () => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  function updateSearchParams(type: string, query: string) {
+  const updateSearchParams = (type: string, query: string) => {
     dispatch(ActionCreator.setSearchParams({ type, query }));
-  }
+  };
 
-  function runSearch() {
+  const runSearch = () => {
     const [type, query] = getValues();
     if(type && query) {
       updateSearchParams(type, query);
       dispatch(ActionCreator.loadHelpers());
     }
-  }
-
-  const formSubmitHandler = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    runSearch();
   };
 
   const typeChangeHandler = (type?: string) => {
@@ -121,13 +127,11 @@ const SearchForm: React.FC = () => {
     }
   };
 
-  const selectChangeHandler = (evt: React.FormEvent<HTMLSelectElement>) => {
-    evt.preventDefault();
-    typeChangeHandler();
-  };
+  const selectChangeHandler = () => typeChangeHandler();
 
-  const inputChangeHandler = (evt: React.FormEvent<HTMLInputElement>) => {
-    evt.preventDefault();
+  const formSubmitHandler = () => runSearch();
+
+  const inputChangeHandler = () => {
     let type = '';
     const [, query] = getValues();
     if(query) {
@@ -144,6 +148,9 @@ const SearchForm: React.FC = () => {
         case symbols[3]:
           type = SymbolToSearchType[symbols[3]]; // $ - search by name
           break;
+        case symbols[4]:
+          type = SymbolToSearchType[symbols[4]]; // % - search by id
+          break;
         default:
           replaceURL({ query });
           break;
@@ -156,10 +163,19 @@ const SearchForm: React.FC = () => {
     }
   };
 
-  const dbInputChangeHandler = useCallback(debounce(inputChangeHandler), []);
+  const dbFormSubmitHandler = useCallback(throttle(formSubmitHandler, 2000), []);
+  const dbInputChangeHandler = useCallback(debounce(inputChangeHandler, 300), []);
 
   return (
-    <form className="search" onSubmit={formSubmitHandler}>
+    <form className="search" onSubmit={
+      (evt: React.FormEvent<HTMLFormElement>) => {
+        evt.preventDefault();
+        dbFormSubmitHandler();
+      }
+    }>
+      <Helmet>
+        <title>{`Search ${SearchTypeToField[storeType]} ${storeQuery.toUpperCase() || '???'} - VBA helpers`}</title>
+      </Helmet>
       <fieldset className="search__input">
         <select
           data-testid="search-select"

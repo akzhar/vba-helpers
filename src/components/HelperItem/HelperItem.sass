@@ -13,12 +13,15 @@
 
   &__name
     color: $color-grey
+    font-size: 18px
+
+    @media(min-width: $width-mobile)
+      font-size: 22px
 
   &__category
     margin: 0
     padding: 0 0 0 20px
     color: $color-grey
-    font-size: 12px
 
     @media(min-width: $width-mobile)
       margin-bottom: 16px
@@ -26,6 +29,15 @@
     & li::marker
       font-weight: 600
       color: $color-grey-dark
+
+  &__category,
+  &__links a,
+  &__description,
+  &__example
+    font-size: 12px
+
+    @media(min-width: $width-mobile)
+      font-size: 14px
 
   &__details,
   &__example
@@ -83,7 +95,6 @@
     & a
       display: block
       margin-bottom: 6px
-      font-size: 14px
 
       &:hover
         opacity: 0.6
@@ -97,21 +108,24 @@
 
   &__header
     margin: 0 0 12px 0
-    font-size: 18px
     font-weight: 400
     color: $color-grey
+    font-size: 16px
 
-  &__description
-    font-size: 14px
+    @media(min-width: $width-mobile)
+      font-size: 18px
 
   &__example
-    font-size: 14px
 
     & pre
       width: 100%
       margin: 0
       display: flex
       background-color: $color-background
+      font-size: 8px
+
+      @media(min-width: $width-mobile)
+        font-size: 12px
 
       & .helper__code-lines
         padding: 16px
@@ -130,7 +144,10 @@
   &__demo
     position: relative
     display: block
-    width: 76%
+    width: 100%
+
+    @media(min-width: $width-mobile)
+      width: 60%
 
     & img
       opacity: 1

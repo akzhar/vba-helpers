@@ -1,8 +1,11 @@
 .button
   background-color: transparent
   font-family: 'RobertoSans-Regular', Tahoma, sans-serif
-  font-size: 16px
   color: $color-grey
+  font-size: 14px
+
+  @media(min-width: $width-mobile)
+    font-size: 16px
 
   &--active
     pointer-events: none
