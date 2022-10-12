@@ -11,10 +11,9 @@ const About: React.FC = () => (
       for <b>Excel</b> using <a href={AboutLinks.WIKI_VBA} target="_blank" rel="noreferrer">VBA</a> often
       there is a need to separate a part of the code into separate
       functions/procedures for further reuse
-      in other places. For example, it is reasonable to put the code for sorting/
-      filtering arrays into separate functions/
-      procedures for further reuse in other
-      macros. This approach simplifies debugging and code support.
+      in other places. For example, it is reasonable to put the
+      code for sorting/filtering arrays into separate functions/procedures
+      for further reuse in other macros. This approach simplifies debugging and code support.
       Over time there is a need to store such pieces of code somewhere.
     </p>
     <p>

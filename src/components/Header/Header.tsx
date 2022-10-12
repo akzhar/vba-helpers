@@ -16,7 +16,7 @@ const Header: React.FC<THeaderProps> = ({ id, text }) => {
     <div className="header">
       <h2 id={id}>
         {text}
-        <Anchor url={`${pathname}#${id}`} aria-label="Link to the header" />
+        <Anchor url={`${pathname}#${id}`} title={`Link to #${id}`} />
       </h2>
     </div>
   );

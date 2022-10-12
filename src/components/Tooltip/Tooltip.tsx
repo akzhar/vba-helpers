@@ -9,7 +9,7 @@ type TTooltipProps = {
 const Tooltip: React.FC<TTooltipProps> = ({ children, message, position = 'top' }) => (
   <div className="tooltip">
     <div className="tooltip__element">{children}</div>
-    <span className={`tooltip__popup tooltip__popup--${position}`}>{message}</span>
+    <span className={`tooltip__popup-hint tooltip__popup-hint--${position}`}>{message}</span>
   </div>
 );
 

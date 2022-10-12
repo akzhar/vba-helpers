@@ -6,46 +6,43 @@
     text-decoration: underline $color_green_dark
     opacity: 0.8
 
-  &:hover .tooltip__popup
-    display: block
+  &:hover .tooltip__popup-hint
+    visibility: visible
 
-  &__popup
-    display: none
+  &__popup-hint
+    visibility: hidden
     position: absolute
-    pointer-events: none
-    background-color: $color-paper
     padding: 10px 12px
     border-radius: 3px
-    transition: all .5s cubic-bezier(.4, 0, .2, 1)
-    color: $color-grey-dark
+    transition: all .2s cubic-bezier(.4, 0, .2, 1)
+    background-color: $color-paper
+    color: $color-grey
     font-style: italic
     z-index: 1
     +shadow()
-    width: 150px
-    white-space: normal
+    min-width: 150px
     font-size: 10px
 
     @media(min-width: $width-mobile)
-      width: auto
-      white-space: nowrap
+      max-width: 300px
       font-size: 12px
 
-  &__popup--top
-    bottom: 100%
-    left: 0
-    transform: translateY(-8px)
+    &--top
+      bottom: 100%
+      left: 0
+      transform: translateY(-8px)
 
-  &__popup--right
-    top: 50%
-    left: 100%
-    transform: translate(16px, -50%)
+    &--right
+      top: 50%
+      left: 100%
+      transform: translate(16px, -50%)
 
-  &__popup--bottom
-    top: 100%
-    left: 0
-    transform: translateY(8px)
+    &--bottom
+      top: 100%
+      left: 0
+      transform: translateY(8px)
 
-  &__popup--left
-    top: 50%
-    right: 100%
-    transform: translate(-16px, -50%)
+    &--left
+      top: 50%
+      right: 100%
+      transform: translate(-16px, -50%)

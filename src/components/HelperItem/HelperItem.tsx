@@ -27,10 +27,10 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
   return (
     <details className="helper" open={isOpen}>
       <summary>
-        <Anchor url={`${AppRoutes.SEARCH}?type=i&query=${helper.id}`} title="Link to the helper"/>
+        <Anchor url={`${AppRoutes.SEARCH}?type=i&query=${helper.id}`} title={`Link to the helper #${helper.id}`}/>
         <span className="helper__name">{helper.name}</span>
         <div className="helper__help">
-          <Tooltip message={helper.title} position="left">
+          <Tooltip message={helper.title} position="right">
             <svg width="18" height="18"><use xlinkHref="#question" /></svg>
           </Tooltip>
         </div>
@@ -39,22 +39,22 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
         <div className="helper__column">
           <ul className="helper__category">
             {
-              helper.category.map((el, i) => (<li key={i}>{el}</li>))
+              helper.category.map((el, i) => (<li key={i}>{el.toLowerCase()}</li>))
             }
           </ul>
           <div className="helper__links">
             <a href={`${HelperLinks.CODE}/${helper.file}`} target="_blank" rel="noreferrer">
-              <svg width="12" height="12"><use xlinkHref="#eye" /></svg>
+              <svg width="14" height="14"><use xlinkHref="#eye" /></svg>
               <span>View code</span>
             </a>
             <a href={`${HelperLinks.FILE}/${helper.file}`} target="_blank" rel="noreferrer">
-              <svg width="12" height="12"><use xlinkHref="#script" /></svg>
+              <svg width="14" height="14"><use xlinkHref="#script" /></svg>
               <span>{`File ${helper.file.slice(helper.file.indexOf('.'))}`}</span>
             </a>
           </div>
         </div>
         <div className="helper__column">
-          <h3 className="helper__header">What is it?</h3>
+          <h3 className="helper__header">What it used for?</h3>
           <p
             className="helper__description"
             dangerouslySetInnerHTML={
@@ -69,7 +69,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
               <h3 className="helper__header">How it works?</h3>
               <a className="helper__demo" href={`${HelperLinks.DEMO}/${helper.demo}`} target="_blank" rel="noreferrer">
                 <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" />
-                <svg width="20" height="20">
+                <svg width="18" height="18">
                   <use xlinkHref="#zoom" />
                 </svg>
               </a>

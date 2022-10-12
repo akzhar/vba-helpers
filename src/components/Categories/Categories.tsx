@@ -38,8 +38,10 @@ const Categories: React.FC = () => {
                 const searchUrl = `${AppRoutes.SEARCH}?type=c&query=${item.category}`
                 return (
                   <li key={item.id}>
-                    <Button url={searchUrl}>{item.category}</Button>
-                    <span className="helpers-counter">{`( ${item.helpersCount} )`}</span>
+                    <Button url={searchUrl}>
+                      <span>{item.category}</span>
+                      <span className="helpers-counter">{`${item.helpersCount}`}</span>
+                    </Button>
                   </li>
                 );
               })}
