@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { THelper } from '@services/Api';
+import copyText from '@utils/copyText';
 
 import Anchor from '@components/Anchor';
 import Tooltip from '@components/Tooltip';
+import Button from '@components/Button';
+import ActionCreator from '@store/actions';
 import { AppRoutes, HelperLinks } from '@consts/const';
 
 type THelperItemProps = {
@@ -11,6 +15,8 @@ type THelperItemProps = {
 };
 
 const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
+
+  const dispatch = useDispatch();
 
   const codeLinesCount = (helper.usage.match(/\n/g)||[]).length + 1;
 
@@ -23,6 +29,15 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
     // eslint-disable-next-line no-empty
     } catch(e) {}
   }, []);
+
+  const copyClickHandler = (text: string) => {
+    const isCopied = copyText(text);
+    dispatch(ActionCreator.setInfoMessage({
+      label: isCopied ? '😊' : '😭',
+      text: isCopied ? 'Copied' : 'Doesn\'t copied'
+    }));
+    dispatch(ActionCreator.showMessage());
+  };
 
   return (
     <details className="helper" open={isOpen}>
@@ -54,7 +69,9 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
           </div>
         </div>
         <div className="helper__column">
-          <h3 className="helper__header">What it used for?</h3>
+          <div className="helper__header">
+            <h3>What it used for?</h3>
+          </div>
           <p
             className="helper__description"
             dangerouslySetInnerHTML={
@@ -66,7 +83,9 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
           </p>
           { helper.demo &&
             <>
-              <h3 className="helper__header">How it works?</h3>
+              <div className="helper__header">
+                <h3>How it works?</h3>
+              </div>
               <a className="helper__demo" href={`${HelperLinks.DEMO}/${helper.demo}`} target="_blank" rel="noreferrer">
                 <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" />
                 <svg width="18" height="18">
@@ -78,9 +97,20 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
         </div>
       </div>
       <div className="helper__example">
-        <h3 className="helper__header">How to use it?</h3>
+        <div className="helper__header">
+          <h3>How to use it?</h3>
+          {
+            helper.usage
+            &&
+            <Button title="Copy example code" clickHandler={() => copyClickHandler(helper.usage)}>
+              <svg width="14" height="14">
+                <use xlinkHref="#copy" />
+              </svg>
+            </Button>
+          }
+        </div>
         {
-          helper.usage.length
+          helper.usage
           ?
           <pre>
             <div className="helper__code-lines">

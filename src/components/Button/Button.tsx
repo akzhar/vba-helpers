@@ -3,12 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 
 type TButtonProps = {
   children: React.ReactNode,
+  title?: string,
   clickHandler?: () => void,
   url?: string,
   active?: boolean
 };
 
-const Button: React.FC<TButtonProps> = ({ children, clickHandler, url, active = false }) => {
+const Button: React.FC<TButtonProps> = ({ children, title, clickHandler, url, active = false }) => {
 
   const { pathname } = useLocation();
 
@@ -21,6 +22,7 @@ const Button: React.FC<TButtonProps> = ({ children, clickHandler, url, active = 
         url ?
         <Link
           to={url}
+          title={title}
           className={`button ${isActive ? 'button--active' : ''}`}
           tabIndex={isActive ? -1 : 0}
           aria-current={isActive}
@@ -30,6 +32,7 @@ const Button: React.FC<TButtonProps> = ({ children, clickHandler, url, active = 
         :
         <button
           type="button"
+          title={title}
           className={`button ${isActive ? 'button--active' : ''}`}
           tabIndex={isActive ? -1 : 0}
           onClick={clickHandler}
