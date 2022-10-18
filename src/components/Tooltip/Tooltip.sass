@@ -1,10 +1,14 @@
 .tooltip
   position: relative
+  display: flex
   cursor: help
 
-  & .tooltip__element:hover
-    text-decoration: underline $color_green_dark
-    opacity: 0.8
+  & .tooltip__element
+    align-self: center
+
+    &:hover
+      text-decoration: underline $color_green_dark
+      opacity: 0.8
 
   &:hover .tooltip__popup-hint
     visibility: visible

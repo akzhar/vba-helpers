@@ -1,8 +1,22 @@
 .button
+  display: flex
   background-color: transparent
   font-family: 'RobertoSans-Regular', Tahoma, sans-serif
   color: $color-grey
   font-size: 14px
+
+  &:active svg
+    fill: $color-grey
+
+  & svg
+    align-self: center
+    fill: $color-green-dark
+    width: 16px
+    height: 16px
+
+    @media(min-width: $width-mobile)
+      width: 18px
+      height: 18px
 
   @media(min-width: $width-mobile)
     font-size: 16px

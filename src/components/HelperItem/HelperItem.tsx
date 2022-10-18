@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { THelper } from '@services/Api';
 import copyText from '@utils/copyText';
+import capitalize from '@utils/capitalize';
 
-import Anchor from '@components/Anchor';
 import Tooltip from '@components/Tooltip';
 import Button from '@components/Button';
 import ActionCreator from '@store/actions';
@@ -17,6 +17,7 @@ type THelperItemProps = {
 const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
 
   const dispatch = useDispatch();
+  const { origin: originPath } = window.location;
 
   const codeLinesCount = (helper.usage.match(/\n/g)||[]).length + 1;
 
@@ -30,11 +31,16 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
     } catch(e) {}
   }, []);
 
-  const copyClickHandler = (text: string) => {
+  interface ICopyClickHandler {
+    name: string,
+    text: string
+  }
+
+  const copyClickHandler = ({ name, text }: ICopyClickHandler) => {
     const isCopied = copyText(text);
     dispatch(ActionCreator.setInfoMessage({
       label: isCopied ? '😊' : '😭',
-      text: isCopied ? 'Copied' : 'Doesn\'t copied'
+      text: isCopied ? `${capitalize(name)} copied` : `${capitalize(name)} doesn't copied`
     }));
     dispatch(ActionCreator.showMessage());
   };
@@ -42,7 +48,19 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
   return (
     <details className="helper" open={isOpen}>
       <summary>
-        <Anchor url={`${AppRoutes.SEARCH}?type=i&query=${helper.id}`} title={`Link to the helper #${helper.id}`}/>
+        <Button
+          title="Copy link to the helper"
+          clickHandler={
+            () => copyClickHandler({
+              name: 'link',
+              text: `${originPath}${AppRoutes.SEARCH}?type=i&query=${helper.id}`
+            })
+          }
+        >
+          <svg width="14" height="14">
+            <use xlinkHref="#share" />
+          </svg>
+        </Button>
         <span className="helper__name">{helper.name}</span>
         <div className="helper__help">
           <Tooltip message={helper.title} position="right">
@@ -102,7 +120,12 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
           {
             helper.usage
             &&
-            <Button title="Copy example code" clickHandler={() => copyClickHandler(helper.usage)}>
+            <Button title="Copy example code" clickHandler={
+              () => copyClickHandler({
+                name: 'example',
+                text: helper.usage
+              })
+            }>
               <svg width="14" height="14">
                 <use xlinkHref="#copy" />
               </svg>
