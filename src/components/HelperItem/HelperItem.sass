@@ -8,17 +8,17 @@
       cursor: pointer
 
     & .helper__help
-      display: flex
-      visibility: hidden
+      display: none
       margin-left: 20px
 
       & svg
+        margin: auto 0
         fill: $color-green_dark
 
   &:not([open]) summary:hover .helper__help
 
     @media(min-width: $width-mobile)
-      visibility: visible
+      display: flex
 
   &__name
     margin-left: 10px
