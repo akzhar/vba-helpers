@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "author": "akzhar.taov@yandex.ru",
-  "description": "VBA helpers catalog",
+  "description": "Frontend for vba-helpers",
   "scripts": {
     "test:eslint": "eslint --ext .tsx --ext .ts src/",
     "test:jest": "jest",

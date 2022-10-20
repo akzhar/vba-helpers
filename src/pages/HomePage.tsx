@@ -10,7 +10,7 @@ const HomePage: React.FC = () => (
     <Helmet>
       <meta
         name="description"
-        content="A free collection of small VBA code pieces indended to help solve common Excel programming cases"
+        content="A free collection of small VBA code pieces intended to help solve common Excel programming cases"
       />
       <meta name="keywords" content="vba, helper, utility, function, procedure, macros, script, collection, excel"/>
       <title>Home - VBA helpers</title>

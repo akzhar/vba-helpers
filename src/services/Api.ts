@@ -26,7 +26,7 @@ class Api {
     if (!Api._instance) {
       Api._instance = this;
     }
-    Api._instance.baseUrl = 'https://vba-helpers-api.herokuapp.com/api';
+    Api._instance.baseUrl = 'https://vbahelpers.ru:3001';
     return Api._instance;
   }
 

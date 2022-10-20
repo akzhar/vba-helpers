@@ -12,7 +12,7 @@ const SearchPage: React.FC = () => (
         name="description"
         content="Search VBA helpers by title, category, keywords, name and id"
       />
-      <meta name="keywords" content="search, vba, helper, excel, macros, script"/>
+      <meta name="keywords" content="search, vba, helper, utility, function, procedure, macros, script, excel"/>
       <title>Search - VBA helpers</title>
     </Helmet>
     <h1 className="visually-hidden">Search helpers</h1>

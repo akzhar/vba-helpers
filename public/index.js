@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const express = require('express');
 
+const os = require('os');
 const path = require('path');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 80;
 
 const app = express();
 
@@ -15,5 +16,5 @@ app.get('/*', (_req, res) => {
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`Project is running at http://localhost:${PORT}`);
+  console.log(`Project is running at http://${os.hostname}:${PORT}`);
 });
