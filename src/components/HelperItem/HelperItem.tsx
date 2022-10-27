@@ -63,7 +63,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
         </Button>
         <span className="helper__name">{helper.name}</span>
         <div className="helper__help">
-          <Tooltip message={helper.title} position="right">
+          <Tooltip message={helper.title} position="left">
             <svg width="18" height="18"><use xlinkHref="#question" /></svg>
           </Tooltip>
         </div>
