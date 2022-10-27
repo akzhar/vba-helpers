@@ -77,7 +77,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
           </ul>
           <div className="helper__links">
             <a href={`${HelperLinks.CODE}/${helper.file}`} target="_blank" rel="noreferrer">
-              <svg width="14" height="14"><use xlinkHref="#eye" /></svg>
+              <svg width="14" height="14"><use xlinkHref="#code" /></svg>
               <span>View code</span>
             </a>
             <a href={`${HelperLinks.FILE}/${helper.file}`} target="_blank" rel="noreferrer">
