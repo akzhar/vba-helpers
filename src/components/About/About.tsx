@@ -18,7 +18,7 @@ const About: React.FC = () => (
     </p>
     <p>
       <b>vba helpers</b> - is a free collection of small code pieces
-      intended to help solve common Excel programming cases.
+      intended to help solving common Excel programming cases.
       All the helpers stored as <b>.bas</b> files
       in the <a href={AboutLinks.GIT_REPO} target="_blank" rel="noreferrer">git repository</a> and
       this site allows you to easily find the helper what you need.

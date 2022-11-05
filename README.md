@@ -1,6 +1,6 @@
 # VBA helpers
 ## 1. What is it?
-This is a free collection of small [VBA](https://en.wikipedia.org/wiki/Visual_Basic_for_Applications) code pieces intended to help solve common Excel programming cases.
+This is a free collection of small [VBA](https://en.wikipedia.org/wiki/Visual_Basic_for_Applications) code pieces intended to help solving common Excel programming cases.
 
 `helper` - utillity procedure / function.
 

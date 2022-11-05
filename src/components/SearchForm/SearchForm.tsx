@@ -174,7 +174,7 @@ const SearchForm: React.FC = () => {
       }
     }>
       <Helmet>
-        <title>{`Search ${SearchTypeToField[storeType]} ${storeQuery.toUpperCase() || '???'} - VBA helpers`}</title>
+        <title>{`Search ${SearchTypeToField[storeType]} ${storeQuery.toUpperCase() || '???'} · VBA helpers`}</title>
       </Helmet>
       <fieldset className="search__input">
         <select
