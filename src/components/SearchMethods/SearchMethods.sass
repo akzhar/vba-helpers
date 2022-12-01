@@ -1,8 +1,10 @@
 .search-methods
 
-  & ul
-    margin: 0 0 16px 0
+  &__list
+    list-style: circle
     display: inline-block
+    line-height: 16px
+    margin: 0 0 16px 0
 
   & li
     margin-bottom: 10px
@@ -10,3 +12,6 @@
 
     & a.button
       display: inline
+
+    &::marker
+      color: $color-grey-dark

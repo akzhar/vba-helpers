@@ -24,7 +24,7 @@ const Categories: React.FC = () => {
 
   return (
     <section className="categories">
-      <Header id="categories" text="Helpers categories" />
+      <Header id="categories" text="Categories" />
         <>
         { isLoading
           ?
@@ -33,7 +33,7 @@ const Categories: React.FC = () => {
           (
             categories.length
             ?
-            <ul>
+            <ul className="categories__list">
             { categories.map((item: TCategory) => {
                 const searchUrl = `${AppRoutes.SEARCH}?type=c&query=${item.category}`
                 return (

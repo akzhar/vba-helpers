@@ -2,16 +2,21 @@ type TLinks = { [key: string]: string };
 
 export const AppRoutes: TLinks = {
   HOME: '/',
-  SEARCH: '/search'
+  SEARCH: '/search',
+  CATEGORIES: '/categories'
 };
 
-export const AboutLinks: TLinks = {
-  WIKI_VBA: 'https://en.wikipedia.org/wiki/Visual_Basic_for_Applications',
-  GIT_REPO: 'https://github.com/akzhar/vba-helpers-api/tree/main/data'
+export const WikiLinks: TLinks = {
+  VBA: 'https://en.wikipedia.org/wiki/Visual_Basic_for_Applications',
+  DRY: 'https://en.wikipedia.org/wiki/Don%27t_repeat_yourself'
+};
+
+export const ReposLinks: TLinks = {
+  APP_REPOSITORY: 'https://github.com/akzhar/vba-helpers',
+  API_REPOSITORY: 'https://github.com/akzhar/vba-helpers-api'
 };
 
 export const ContactLinks: TLinks = {
-  GITHUB: 'https://github.com/akzhar/vba-helpers',
   TELEGRAM: 'https://t.me/akzhario'
 };
 

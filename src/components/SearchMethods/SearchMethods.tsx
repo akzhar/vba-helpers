@@ -13,9 +13,9 @@ const SearchMethods: React.FC = () => (
   <section className="search-methods">
     <Header
       id="search-methods"
-      text={`${searchTypes.length} ${getPlural(searchTypes.length, 'way', 'ways', 'ways')} to search helpers`}
+      text={`${searchTypes.length} ${getPlural(searchTypes.length, 'way', 'ways', 'ways')} to search`}
     />
-    <ul>
+    <ul className="search-methods__list">
       {searchTypes.map(type => (
         <li key={type}>
           <Button url={`${AppRoutes.SEARCH}?type=${type}`}>{capitalize(SearchTypeToHint[type])}</Button>

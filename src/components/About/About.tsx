@@ -1,35 +1,27 @@
+/* eslint-disable max-len */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Header from '@components/Header';
-import { AboutLinks } from '@consts/const';
+import { AppRoutes } from '@consts/const';
+
+import VbaWikiLink from './VbaWikiLink';
+import DryWikiLink from './DryWikiLink';
+import { SearchExample1, SearchExample2, SearchExample3 } from './SearchExamples';
 
 const About: React.FC = () => (
-  <section className="about">
+  <section>
     <Header id="about" text="What is it"/>
     <p>
-      When writing macros
-      for <b>Excel</b> using <a href={AboutLinks.WIKI_VBA} target="_blank" rel="noreferrer">VBA</a> often
-      there is a need to separate a part of the code into separate
-      functions/procedures for further reuse
-      in other places. For example, it is reasonable to put the
-      code for sorting/filtering arrays into separate functions/procedures
-      for further reuse in other macros. This approach simplifies debugging and code support.
-      Over time there is a need to store such pieces of code somewhere.
+      Excel allows you to automate routine and <VbaWikiLink /> helps
+      you with that. Excel VBA API is quite wordy. You may want to
+      simplify the interaction with it. This site is here to help you!
     </p>
     <p>
-      <b>vba helpers</b> - is a free collection of small code pieces
-      intended to help solving common Excel programming cases.
-      All the helpers stored as <b>.bas</b> files
-      in the <a href={AboutLinks.GIT_REPO} target="_blank" rel="noreferrer">git repository</a> and
-      this site allows you to easily find the helper what you need.
-    </p>
-    <dl>
-      <dt>helper *</dt>
-      <dd>utillity procedure / function</dd>
-    </dl>
-    <p>
-      Each helper performs a specific task.
-      All helpers are divided into categories.
+      <b>vba helpers *</b> is a code snippets collection intended to solve common Excel programming tasks
+      like: <SearchExample1 /> or <SearchExample2 /> or <SearchExample3 /> and <Link to={AppRoutes.CATEGORIES}>many others</Link>.
+      Encapsulating the logic inside procedures or functions for the future
+      reuse makes your solution simplier for development and maintainance (<DryWikiLink />).
     </p>
   </section>
 );
