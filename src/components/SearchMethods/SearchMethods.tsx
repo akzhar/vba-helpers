@@ -15,13 +15,13 @@ const SearchMethods: React.FC = () => (
       id="search-methods"
       text={`${searchTypes.length} ${getPlural(searchTypes.length, 'way', 'ways', 'ways')} to search helpers`}
     />
-    <ol>
+    <ul>
       {searchTypes.map(type => (
         <li key={type}>
           <Button url={`${AppRoutes.SEARCH}?type=${type}`}>{capitalize(SearchTypeToHint[type])}</Button>
         </li>
       ))}
-    </ol>
+    </ul>
   </section>
 );
 

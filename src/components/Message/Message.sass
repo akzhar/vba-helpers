@@ -1,16 +1,15 @@
 .message
   display: none
   position: fixed
-  top: 36px
-  left: 50%
-  transform: translate(-50%, 0)
+  top: 4%
+  left: 10%
   padding: 20px
   border-radius: 4px
   background-color: $color-msg-info-back
   color: $color-msg-info-text
   z-index: 2
   +shadow()
-  +animation-slide-in-top()
+  +animation-slide-message()
   font-size: 14px
 
   @media(min-width: $width-mobile)

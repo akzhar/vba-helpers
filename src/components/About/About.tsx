@@ -5,7 +5,7 @@ import { AboutLinks } from '@consts/const';
 
 const About: React.FC = () => (
   <section className="about">
-    <Header id="about" text="What is it?"/>
+    <Header id="about" text="What is it"/>
     <p>
       When writing macros
       for <b>Excel</b> using <a href={AboutLinks.WIKI_VBA} target="_blank" rel="noreferrer">VBA</a> often

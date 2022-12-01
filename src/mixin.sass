@@ -2,6 +2,11 @@
   background: rgba(random(255), random(255), random(255), 0.3)
   outline: 1px solid rgb(random(255), random(255), random(255))
 
+=gradient-font()
+  background: -webkit-linear-gradient( $color-theme-cold 0%, $color-theme-warm 100%)
+  -webkit-background-clip: text
+  -webkit-text-fill-color: transparent
+
 =hide()
   position: absolute
   width: 1px
@@ -15,14 +20,14 @@
 =shadow()
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24)
 
-=animation-slide-in-top()
-  @keyframes slide-in-top
+=animation-slide-message()
+  @keyframes slide-message
     0%
-      transform: translate(-50%, -100px)
+      transform: translateX(-200px)
       opacity: 0
     100%
-      transform: translate(-50%, 0)
+      transform: translateX(0)
       opacity: 1
 
-  animation-name: slide-in-top
+  animation-name: slide-message
   animation-duration: 0.3s

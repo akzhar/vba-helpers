@@ -88,7 +88,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
         </div>
         <div className="helper__column">
           <div className="helper__header">
-            <h3>What it used for?</h3>
+            <h3>What it used for</h3>
           </div>
           <p
             className="helper__description"
@@ -102,7 +102,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
           { helper.demo &&
             <>
               <div className="helper__header">
-                <h3>How it works?</h3>
+                <h3>How it works</h3>
               </div>
               <a className="helper__demo" href={`${HelperLinks.DEMO}/${helper.demo}`} target="_blank" rel="noreferrer">
                 <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" />
@@ -116,7 +116,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
       </div>
       <div className="helper__example">
         <div className="helper__header">
-          <h3>How to use it?</h3>
+          <h3>How to use it</h3>
           {
             helper.usage
             &&

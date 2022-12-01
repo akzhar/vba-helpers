@@ -13,7 +13,7 @@
 
       & svg
         margin: auto 0
-        fill: $color-green_dark
+        fill: $color-theme-mid
 
   &:not([open]) summary:hover .helper__help
 
@@ -22,9 +22,9 @@
 
   &__name
     margin-left: 10px
-    color: $color-grey
     font-size: 18px
     line-height: 40px
+    +gradient-font()
 
     @media(min-width: $width-mobile)
       margin-left: 20px
@@ -41,8 +41,10 @@
     @media(min-width: $width-mobile)
       margin-bottom: 16px
 
+    & li
+      padding-left: 10px
+
     & li::marker
-      font-weight: 600
       color: $color-grey-dark
 
   &__category,
@@ -112,12 +114,9 @@
       align-items: center
       margin-bottom: 6px
 
-      &:hover
-        opacity: 0.8
-
       & svg
         margin-right: 12px
-        fill: $color-green-dark
+        fill: $color-theme-mid
         width: 14px
         height: 14px
 
@@ -132,6 +131,7 @@
     display: flex
     align-items: center
     margin: 0 0 12px 0
+    +gradient-font()
 
     & .button
       margin-left: auto
@@ -155,8 +155,8 @@
   &__description code:not(.hljs)
       padding: 1px 4px
       border-radius: 4px
-      border: 1px solid $color-green-dark
-      background-color: $color-green-light
+      border: 1px solid $color-theme-mid
+      color: $color-theme-mid
 
   &__example
 
@@ -170,7 +170,7 @@
         padding: 10px
         display: flex
         flex-direction: column
-        color: $color-green-dark
+        color: $color-theme-mid
         font-weight: 600
         text-align: center
 
@@ -216,7 +216,7 @@
       transform: translate(-50%, -50%)
       width: 30%
       height: 30%
-      fill: $color-grey
+      fill: $color-theme-cold
       transition: .5s ease
 
     &:hover img
