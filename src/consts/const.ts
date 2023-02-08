@@ -1,14 +1,22 @@
+/* eslint-disable max-len */
 type TLinks = { [key: string]: string };
 
 export const AppRoutes: TLinks = {
   HOME: '/',
+  CATEGORIES: '/categories',
   SEARCH: '/search',
-  CATEGORIES: '/categories'
+  SEARCH_HELPER: '/search-from-excel'
 };
 
 export const WikiLinks: TLinks = {
   VBA: 'https://en.wikipedia.org/wiki/Visual_Basic_for_Applications',
   DRY: 'https://en.wikipedia.org/wiki/Don%27t_repeat_yourself'
+};
+
+export const DocsLinks: TLinks = {
+  EXCEL_VBA_API: 'https://learn.microsoft.com/en-us/office/vba/api/overview/excel',
+  PERSONAL_XLSB: 'https://support.microsoft.com/en-us/office/create-and-save-all-your-macros-in-a-single-workbook-66c97ab3-11c2-44db-b021-ae005a9bc790',
+  IMMEDIATE_WINDOW: 'https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/use-the-immediate-window'
 };
 
 export const ReposLinks: TLinks = {

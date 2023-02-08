@@ -24,7 +24,7 @@ const Categories: React.FC = () => {
 
   return (
     <section className="categories">
-      <Header id="categories" text="Categories" />
+      <Header text="Categories" />
         <>
         { isLoading
           ?

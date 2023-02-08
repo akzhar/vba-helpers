@@ -32,6 +32,8 @@ a.button
 
   &:hover
     border-bottom: 2px solid $color-theme-mid
+    opacity: 0.8
+    transition: 0.4s
 
   &:active
     border-bottom: 2px solid $color-grey-light
@@ -39,13 +41,16 @@ a.button
   &--active
     border-bottom: 2px solid $color-theme-mid
 
-button.button
+button.button,
+label.button
   padding: 8px
   border: 2px solid transparent
   border-radius: 4px
 
   &:hover
     border: 2px solid $color-theme-mid
+    opacity: 0.8
+    transition: 0.4s
 
   &:active
     border: 2px solid $color-grey

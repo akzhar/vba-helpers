@@ -1,11 +1,12 @@
 .header
   display: flex
-  justify-content: center
   margin: 0 0 20px 0
+
+  &__wrapper
+    position: relative
 
   & h2
     display: inline
-    position: relative
     margin: 0
     font-weight: 400
     text-align: center
@@ -15,14 +16,18 @@
     @media(min-width: $width-mobile)
       font-size: 26px
 
-    & .anchor
-      display: none
-      position: absolute
-      top: 50%
-      left: -24px
-      transform: translateY(-50%)
+  & .anchor
+    display: none
+    position: absolute
+    top: 50%
+    left: -40px
+    transform: translateY(-50%)
 
   &:hover .anchor
     display: flex
     justify-content: center
     align-items: center
+
+  &__icon
+    position: absolute
+    right: -40px

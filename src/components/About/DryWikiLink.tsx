@@ -2,7 +2,7 @@ import React from 'react';
 
 import { WikiLinks } from '@consts/const';
 
-const WryWikiLink: React.FC = () => (
+const DryWikiLink: React.FC = () => (
   <a
     href={WikiLinks.DRY}
     target="_blank"
@@ -12,4 +12,4 @@ const WryWikiLink: React.FC = () => (
   </a>
 );
 
-export default WryWikiLink;
+export default DryWikiLink;

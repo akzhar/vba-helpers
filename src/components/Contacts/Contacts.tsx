@@ -8,7 +8,7 @@ import TelegramLink from './TelegramLink';
 
 const Contacts: React.FC = () => (
   <section className="contacts">
-    <Header id="contacts" text="Contacts" />
+    <Header id="contacts" text="Contacts" icon="🛎️" />
     <p className="contacts__info">
       Share your ideas and issues on <GitRepoIssuesLink>GitHub Issues</GitRepoIssuesLink>.<br/>
       Feel free to touch me in <TelegramLink>Telegram</TelegramLink>.

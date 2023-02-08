@@ -12,7 +12,9 @@ const NotFoundPage: React.FC = () => (
       <title>404 · VBA helpers</title>
     </Helmet>
     <h1 className="visually-hidden">Page 404</h1>
-    <p style={{ textAlign: 'center'}}>There is no such page. Navigate to any of exist pages.</p>
+    <p style={{ textAlign: 'center'}}>
+      There is no such page... <span role="img" aria-label="icon">👻</span> Please navigate to any of exist pages.
+    </p>
   </>
 );
 

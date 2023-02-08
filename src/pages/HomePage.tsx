@@ -22,9 +22,9 @@ const HomePage: React.FC = () => (
       <div className="layout__column">
         <About/>
         <GettingStarted />
+        <CategoriesPreview />
       </div>
       <div className="layout__column">
-        <CategoriesPreview />
         <SearchMethods />
         <Contacts />
       </div>

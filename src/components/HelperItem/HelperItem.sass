@@ -69,7 +69,6 @@
       flex-direction: row
 
     & > .helper__column
-      box-sizing: border-box
       width: 100%
       padding: 20px 0
       border-bottom: 2px solid $color-grey-light
@@ -190,38 +189,8 @@
       & code.hljs
         background: none
 
-  &__demo
-    position: relative
-    display: block
-    width: 100%
-
-    &:hover
-      cursor: zoom-in
+  & .demo-image
+    width: 80%
 
     @media(min-width: $width-mobile)
-      width: 80%
-
-    & img
-      opacity: 1
-      display: block
-      width: 100%
-      height: auto
-      transition: .5s ease
-      border: 1px solid $color-grey-light
-
-    & svg
-      opacity: 0
-      position: absolute
-      top: 50%
-      left: 50%
-      transform: translate(-50%, -50%)
-      width: 30%
-      height: 30%
-      fill: $color-theme-cold
-      transition: .5s ease
-
-    &:hover img
-      opacity: 0.3
-
-    &:hover svg
-      opacity: 1
+      width: 70%

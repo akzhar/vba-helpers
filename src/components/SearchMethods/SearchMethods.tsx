@@ -1,5 +1,4 @@
 import React from 'react';
-import getPlural from '@utils/getPlural';
 import capitalize from '@utils/capitalize';
 
 import Button from '@components/Button';
@@ -11,17 +10,19 @@ const searchTypes = Object.keys(SearchTypeToHint);
 
 const SearchMethods: React.FC = () => (
   <section className="search-methods">
-    <Header
-      id="search-methods"
-      text={`${searchTypes.length} ${getPlural(searchTypes.length, 'way', 'ways', 'ways')} to search`}
-    />
-    <ul className="search-methods__list">
-      {searchTypes.map(type => (
-        <li key={type}>
-          <Button url={`${AppRoutes.SEARCH}?type=${type}`}>{capitalize(SearchTypeToHint[type])}</Button>
-        </li>
-      ))}
-    </ul>
+    <Header id="search-methods" text="Ways to search" />
+    <ol className="search-methods__list">
+      <li>Search on site
+        <ul className="search-methods__sub-list">
+          {searchTypes.map(type => (
+            <li key={type}>
+              <Button url={`${AppRoutes.SEARCH}?type=${type}`}>{capitalize(SearchTypeToHint[type])}</Button>
+            </li>
+          ))}
+        </ul>
+      </li>
+      <li><Button url={AppRoutes.SEARCH_HELPER}>Search from Excel</Button></li>
+    </ol>
   </section>
 );
 

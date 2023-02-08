@@ -7,6 +7,7 @@ import capitalize from '@utils/capitalize';
 import Tooltip from '@components/Tooltip';
 import Button from '@components/Button';
 import ActionCreator from '@store/actions';
+import DemoImage from '@components/DemoImage';
 import { AppRoutes, HelperLinks } from '@consts/const';
 
 type THelperItemProps = {
@@ -104,12 +105,7 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
               <div className="helper__header">
                 <h3>How it works</h3>
               </div>
-              <a className="helper__demo" href={`${HelperLinks.DEMO}/${helper.demo}`} target="_blank" rel="noreferrer">
-                <img src={`${HelperLinks.DEMO}/${helper.demo}`} alt="demo" />
-                <svg width="18" height="18">
-                  <use xlinkHref="#zoom" />
-                </svg>
-              </a>
+              <DemoImage url={`${HelperLinks.DEMO}/${helper.demo}`} />
             </>
           }
         </div>

@@ -13,6 +13,9 @@
   src: url('./assets/fonts/RobertoSans-Thin.woff2') format('woff2')
   src: url('./assets/fonts/RobertoSans-Thin.woff') format('woff')
 
+*
+  box-sizing: border-box
+
 html, body
   margin: 0
   font-family: 'RobertoSans-Regular', Tahoma, sans-serif
@@ -20,6 +23,7 @@ html, body
   font-size: 22px
   line-height: normal
   color: $color-grey-dark
+
 a
   color: $color-theme-cold
   text-decoration: none
@@ -54,3 +58,5 @@ section
 @import ./components/Contacts/Contacts.sass
 @import ./components/HelperList/HelperList.sass
 @import ./components/HelperItem/HelperItem.sass
+@import ./components/DemoImage/DemoImage.sass
+@import ./components/Slider/Slider.sass

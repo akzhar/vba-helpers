@@ -6,8 +6,11 @@
   background-color: $color-background
 
   & main
-    width: 80%
+    width: 90%
     margin: 60px auto 0 auto
+
+    @media(min-width: $width-mobile)
+      width: 80%
 
   &__columns-wrapper
     display: flex
