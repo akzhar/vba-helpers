@@ -44,7 +44,7 @@ const symbols = Object.keys(SymbolToSearchType);
 const SearchForm: React.FC = () => {
 
   const [searchParams] = useSearchParams();
-  const {search} = useLocation();
+  const location = useLocation();
   const paramType = searchParams.get('type');
   const paramQuery = searchParams.get('query');
 
@@ -82,7 +82,7 @@ const SearchForm: React.FC = () => {
     }
   }
 
-  useEffect(initialize, [search]);
+  useEffect(initialize, [location]);
 
   // Replace URL params without push to history to allow copy link to search results
   const replaceURL = ({ type, query }: {[key: string]: string}) => {
