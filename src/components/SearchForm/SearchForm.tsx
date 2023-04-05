@@ -7,6 +7,7 @@ import debounce from '@utils/debounce';
 import throttle from '@utils/throttle';
 import capitalize from '@utils/capitalize';
 
+import { AppRoutes } from '@consts/const';
 import Button from '@components/Button';
 import ActionCreator from '@store/actions';
 import { TState } from '@store/reducer';
@@ -41,10 +42,15 @@ const SymbolToSearchType: { [key: string]: string } =  {
 const searchTypes = Object.keys(SearchTypeToHint);
 const symbols = Object.keys(SymbolToSearchType);
 
+declare const ym: (arg1: number, arg2: string, arg3: string, options?: unknown) => void;
+
 const SearchForm: React.FC = () => {
 
-  const [searchParams] = useSearchParams();
   const location = useLocation();
+
+  useEffect(() => { ym(93095535, 'hit', `${AppRoutes.SEARCH}${location.search}`); }, [location]);
+
+  const [searchParams] = useSearchParams();
   const paramType = searchParams.get('type');
   const paramQuery = searchParams.get('query');
 
