@@ -7,6 +7,7 @@ export type TCategory = {
 
 export type THelper = {
   id: string,
+  updated_at: string,
   category: string[],
   name: string,
   title: string,

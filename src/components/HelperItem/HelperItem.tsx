@@ -108,6 +108,11 @@ const HelperItem: React.FC<THelperItemProps> = ({helper, isOpen}) => {
               <DemoImage url={`${HelperLinks.DEMO}/${helper.demo}`} />
             </>
           }
+          <p className="helper__updated">
+            Last update: <time dateTime={helper.updated_at}>{
+            new Date(helper.updated_at).toLocaleDateString()
+          }</time>
+          </p>
         </div>
       </div>
       <div className="helper__example">

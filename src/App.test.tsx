@@ -52,6 +52,7 @@ const category1: TCategory = {
 
 const helper3: THelper = {
   id: '3',
+  updated_at: '2023-10-29',
   category: [
     'Transformation',
     'Arrays'
@@ -68,6 +69,7 @@ const helper3: THelper = {
 
 const helper21: THelper = {
   id: '21',
+  updated_at: '2023-10-29',
   category: [
     'Transformation',
     'Date and time'
