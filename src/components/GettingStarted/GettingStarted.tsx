@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Header from '@components/Header';
-
-import CodeStorageLink from './CodeStorageLink';
+import { AppRoutes } from '@consts/const';
 
 const GettingStarted: React.FC = () => (
   <section>
-  <Header id="getting-started" text="Getting started"/>
+  <Header id="getting-started" text="Getting started" icon="🚀" />
     <p>
-      You can easily search the helper that is suitable for your needs: just
-      put a few keywords and press Enter. All the helpers are stored
-      in the <CodeStorageLink /> as plain text files and supplied with
-      an example of usage so you can easily apply it in your project.
+      There are a few distinct search methods available for you:
+      the <Link to={`${AppRoutes.SEARCH}?type=k`}>search field</Link> on site
+      or you can search and import helpers <Link to={AppRoutes.SEARCH_FROM_XLSX}>right from Excel</Link>.
+      Yet another way is <Link to={AppRoutes.CATEGORIES}>categories</Link> which were designed
+      to help you on a particular scope of tasks.
     </p>
   </section>
 );

@@ -8,7 +8,7 @@ declare const ym: (arg1: number, arg2: string, arg3: string, options?: unknown) 
 
 const SearchHelperPage: React.FC = () => {
 
-  useEffect(() => { ym(93095535, 'hit', `${AppRoutes.SEARCH_HELPER}`); }, []);
+  useEffect(() => { ym(93095535, 'hit', `${AppRoutes.SEARCH_FROM_XLSX}`); }, []);
 
   return (
     <>

@@ -15,7 +15,7 @@ const App: React.FC = () => (
       <Route index element={<HomePage />} />
       <Route path={AppRoutes.SEARCH} element={<SearchPage />} />
       <Route path={AppRoutes.CATEGORIES} element={<CategoriesPage />} />
-      <Route path={AppRoutes.SEARCH_HELPER} element={<SearchHelperPage />} />
+      <Route path={AppRoutes.SEARCH_FROM_XLSX} element={<SearchHelperPage />} />
       <Route path="*" element={<NotFoundPage/>} />
     </Route>
   </Routes>

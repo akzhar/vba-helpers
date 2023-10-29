@@ -5,7 +5,6 @@ import { AppRoutes } from '@consts/const';
 import About from '@components/About';
 import GettingStarted from '@components/GettingStarted';
 import SearchMethods from '@components/SearchMethods';
-import CategoriesPreview from '@components/CategoriesPreview';
 import Contacts from '@components/Contacts';
 
 declare const ym: (arg1: number, arg2: string, arg3: string, options?: unknown) => void;
@@ -28,12 +27,11 @@ const HomePage: React.FC = () => {
       <div className="layout__columns-wrapper">
         <div className="layout__column">
           <About/>
-          <GettingStarted />
-          <CategoriesPreview />
+          <Contacts />
         </div>
         <div className="layout__column">
+          <GettingStarted />
           <SearchMethods />
-          <Contacts />
         </div>
       </div>
     </>

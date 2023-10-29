@@ -18,7 +18,7 @@ hosting --> VPS --> Home --> IP address
 
 ## Copy files to the remote VPS server
 Connect VPS with SFTP using [FileZilla](https://filezilla-project.org)
-- Host: `sftps://host_ip_address`
+- Host: `sftp://host_ip_address`
 - User: `root`
 - Password: see email `Создан сервер Amethyst Neon`
 - Port: leave empty
@@ -32,9 +32,13 @@ hosting --> VPS --> Select my server --> Open console
 
 ## Set up apache web server
 ### SSL sertifiates
-Folder `/etc/ssl`
+Using Let’s Encrypt
+https://letsencrypt.org/getting-started - old
+https://certbot.eff.org/instructions?ws=apache&os=ubuntufocal
 
-File `fullchain.crt` - сертификат +  промежуточный сертификат + корневой сертификат
+Certificate +  промежуточный сертификат + корневой сертификат
+`/etc/ssl/fullchain.crt`
+`/etc/letsencrypt/live/vbahelpers.ru/fullchain.pem`
 ```
   -----BEGIN CERTIFICATE-----
   ...xxx
@@ -47,13 +51,16 @@ File `fullchain.crt` - сертификат +  промежуточный сер
   -----END CERTIFICATE-----
 ```
 
-File `private.key` - приватный ключ
-
+Private key
+`/etc/ssl/private.key` - old
+`/etc/letsencrypt/live/vbahelpers.ru/privkey.pem`
 ```
   -----BEGIN RSA PRIVATE KEY-----
   ...xxx
   -----END RSA PRIVATE KEY-----
 ```
+
+`/etc/apache2/sites-available/000-default-le-ssl.conf` - ssl cert info
 
 ### Describe app's root folder for hosts
 Folder `/etc/apache2/sites-available`

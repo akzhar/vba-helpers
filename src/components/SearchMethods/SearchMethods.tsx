@@ -10,7 +10,7 @@ const searchTypes = Object.keys(SearchTypeToHint);
 
 const SearchMethods: React.FC = () => (
   <section className="search-methods">
-    <Header id="search-methods" text="Ways to search" />
+    <Header id="search-methods" text="How to find a helper" icon="🕵️" />
     <ol className="search-methods__list">
       <li>Search on site
         <ul className="search-methods__sub-list">
@@ -21,7 +21,7 @@ const SearchMethods: React.FC = () => (
           ))}
         </ul>
       </li>
-      <li><Button url={AppRoutes.SEARCH_HELPER}>Search from Excel</Button></li>
+      <li><Button url={AppRoutes.SEARCH_FROM_XLSX}>Search from Excel</Button></li>
     </ol>
   </section>
 );

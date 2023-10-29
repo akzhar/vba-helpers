@@ -5,7 +5,7 @@ export const AppRoutes: TLinks = {
   HOME: '/',
   CATEGORIES: '/categories',
   SEARCH: '/search',
-  SEARCH_HELPER: '/search-from-excel'
+  SEARCH_FROM_XLSX: '/search-from-xlsx'
 };
 
 export const WikiLinks: TLinks = {
