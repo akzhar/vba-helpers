@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
       <Helmet>
         <meta
           name="description"
-          content="A code snippets collection intended to solve common Excel programming tasks"
+          content="VBA code snippets collection intended to solve general Excel programming tasks"
         />
         <meta name="keywords" content="vba, helper, utility, function, procedure, macros, script, collection, excel"/>
         <title>Home · VBA helpers</title>

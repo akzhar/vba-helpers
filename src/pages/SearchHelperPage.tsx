@@ -15,10 +15,10 @@ const SearchHelperPage: React.FC = () => {
       <Helmet>
         <meta
           name="description"
-          content="Search helper"
+          content="Search from Excel"
         />
         <meta name="keywords" content="search, vba, helper, utility, function, procedure, macros, script, excel"/>
-        <title>Search helper · VBA helpers</title>
+        <title>Search from xlsx · VBA helpers</title>
       </Helmet>
       <h1 className="visually-hidden">Search helper</h1>
       <SearchHelperGuide />
