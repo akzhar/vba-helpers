@@ -9,9 +9,9 @@ const GettingStarted: React.FC = () => (
   <Header id="getting-started" text="Getting started" icon="🚀" />
     <p>
       There are a few distinct search methods available for you:
-      the <Link to={`${AppRoutes.SEARCH}?type=k`}>search field</Link> on site
-      or you can search and import helpers <Link to={AppRoutes.SEARCH_FROM_XLSX}>right from Excel</Link>.
-      Yet another way is <Link to={AppRoutes.CATEGORIES}>categories</Link> which were designed
+      you can use <Link to={`${AppRoutes.SEARCH}?type=k`}>the search page on the site</Link> or
+      you can <Link to={AppRoutes.SEARCH_FROM_XLSX}>search and import helpers right from Excel</Link>.
+      If you not sure where to start consider use <Link to={AppRoutes.CATEGORIES}>categories</Link> which were designed
       to help you on a particular scope of tasks.
     </p>
   </section>

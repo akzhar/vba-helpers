@@ -22,10 +22,9 @@ const About: React.FC = () => (
       like: <SearchExample1 /> or <SearchExample2 /> or <SearchExample3 /> and <Link to={AppRoutes.CATEGORIES}>many others</Link>.
     </p>
     <p>
-      Thus, the logic of working with <ExcelVbaDocsLink /> is hidden,
-      you just call ready-made procedures / functions as needed. This approach
-      makes your code more readable and reliable. All the helpers supplied with description
-      of parameters and example of usage so you can easily apply them in your macros.
+      The main idea is to hide some tricky parts of <ExcelVbaDocsLink /> and
+      provide you a set of ready-made procedures / functions to be used. All the helpers
+      supplied with parameters description and example of usage so you can easily apply them in your macros.
     </p>
   </section>
 );
